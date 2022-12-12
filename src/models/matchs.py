@@ -8,9 +8,14 @@ class Matchs:
         self.joueur1_score = joueur1_score
         self.joueur2_score = joueur2_score
 
-    def display(self):
-        """Method displaying match information"""
-        print("Joueur 1 : {}".format(self.joueur1))
-        print("Joueur 2 : {}".format(self.joueur2))
-        print("Score Joueur 1 : {}".format(self.joueur1_score))
-        print("Score Joueur 2 : {}".format(self.joueur2_score))
+    def __str__(self):
+        """Method returning match information"""
+        return f"""
+                Joueur 1 : {self.joueur1}\n
+                Joueur 2 : {self.joueur2}\n
+                Score Joueur 1 : {self.joueur1_score}\n
+                Score Joueur 2 : {self.joueur2_score}
+            """
+
+    def __repr__(self):
+        return str(self)

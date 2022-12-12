@@ -5,11 +5,6 @@ from models.Joueurs import Joueurs
 def main():
     """Main function"""
 
-    # Create tournament
-    tournament = Tournois(
-        "Tournoi de test", "Paris", "01/01/2020", [], [], "Blitz", "Test"
-    )
-
     # Create players and add them to the tournament
     player_1 = Joueurs("Dupont", "Jean", "01/01/1900", "M", 1)
     player_2 = Joueurs("Martin", "Pierre", "01/01/1900", "M", 2)
@@ -20,6 +15,12 @@ def main():
     player_7 = Joueurs("Richard", "Laurent", "01/01/1900", "M", 7)
     player_8 = Joueurs("Leroy", "Julie", "01/01/1900", "F", 8)
 
+    # Create tournament
+    tournament = Tournois(
+        "Tournoi de test", "Paris", "01/01/2020", [], [], "Blitz", "Test"
+    )
+
+    # Add players to the tournament
     tournament.add_player(player_1)
     tournament.add_player(player_2)
     tournament.add_player(player_3)
@@ -30,7 +31,7 @@ def main():
     tournament.add_player(player_8)
 
     # Display tournament information
-    tournament.display()
+    print(tournament)
 
 
 if __name__ == "__main__":
