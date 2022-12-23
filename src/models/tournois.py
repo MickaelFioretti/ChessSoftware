@@ -1,20 +1,21 @@
 from typing import List
 from .matchs import Matchs
-from .joueurs import Joueurs
+from .joueur import Joueur
+
 
 class Tournois:
     """Class representing a tournament"""
 
     def __init__(
         self,
-        name:str,
-        location:str,
-        date:str,
-        tours:List[Matchs],
-        joueurs: List[Joueurs],
-        time_control:str,
-        description:str,
-        number_of_rounds:int=4,
+        name: str,
+        location: str,
+        date: str,
+        tours: List[Matchs],
+        joueurs: List[Joueur],
+        time_control: str,
+        description: str,
+        number_of_rounds: int = 4,
     ):
         """Constructor"""
         self.name = name
@@ -44,10 +45,10 @@ class Tournois:
 
     def play_round(self):
         """Method playing a round"""
-        #generate pair
-        #joue le resultat des pairs
-        #en fonction du résultat
-        #joueur1.defeat ou joueur1.win et joueur2.defeat ou joueur2.win
+        # generate pair
+        # joue le resultat des pairs
+        # en fonction du résultat
+        # joueur1.defeat ou joueur1.win et joueur2.defeat ou joueur2.win
 
     def __repr__(self):
         return str(self)

@@ -1,19 +1,19 @@
-from models.Tournois import Tournois
-from models.Joueurs import Joueurs
+from models.joueur import Joueur
+from models.tournois import Tournois
 
 
 def main():
     """Main function"""
 
     # Create players and add them to the tournament
-    player_1 = Joueurs("Dupont", "Jean", "01/01/1900", "M", 1)
-    player_2 = Joueurs("Martin", "Pierre", "01/01/1900", "M", 2)
-    player_3 = Joueurs("Durand", "Paul", "01/01/1900", "M", 3)
-    player_4 = Joueurs("Robert", "Jacques", "01/01/1900", "M", 4)
-    player_5 = Joueurs("Petit", "Marie", "01/01/1900", "F", 5)
-    player_6 = Joueurs("Thomas", "Lucie", "01/01/1900", "F", 6)
-    player_7 = Joueurs("Richard", "Laurent", "01/01/1900", "M", 7)
-    player_8 = Joueurs("Leroy", "Julie", "01/01/1900", "F", 8)
+    player_1 = Joueur("Dupont", "Jean", "01/01/1900", "M", 1)
+    player_2 = Joueur("Martin", "Pierre", "01/01/1900", "M", 2)
+    player_3 = Joueur("Durand", "Paul", "01/01/1900", "M", 3)
+    player_4 = Joueur("Robert", "Jacques", "01/01/1900", "M", 4)
+    player_5 = Joueur("Petit", "Marie", "01/01/1900", "F", 5)
+    player_6 = Joueur("Thomas", "Lucie", "01/01/1900", "F", 6)
+    player_7 = Joueur("Richard", "Laurent", "01/01/1900", "M", 7)
+    player_8 = Joueur("Leroy", "Julie", "01/01/1900", "F", 8)
 
     # Create tournament
     tournament = Tournois(
