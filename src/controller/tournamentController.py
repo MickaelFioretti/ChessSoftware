@@ -1,28 +1,74 @@
+# import
+from time import sleep
+import os
+
+# views
 from view.menuView import MenuView, MenuOption
+from view.joueurFormView import JoueurFormView
+
+# Models
+from models.joueur import Joueur
 
 
 class TournamentController:
-    def __init__(self, view):
-        self.view = view
+    """Class to manage the tournament"""
 
-    def run(self):
-        self.view.run()
+    def __init__(self, menu_view: MenuView, joueur_form_view: JoueurFormView):
+        self.menu_view = menu_view
+        self.joueur_form_view = joueur_form_view
+        self.joueurs = []
+
+    def display_menu(self):
+        """Display the menu"""
+        choice = self.menu_view.display()
+        if choice == 1:
+            self.add_joueur()
+        elif choice == 2:
+            self.display_joueurs()
+        elif choice == 3:
+            self.quit()
+        else:
+            print("Choix invalide")
+
+    def add_joueur(self):
+        """Add a new player"""
+        joueur_data = self.joueur_form_view.display()
+        joueur = Joueur(**joueur_data)
+        self.joueurs.append(joueur)
+
+    def display_joueurs(self):
+        """Display the players"""
+        if not self.joueurs:
+            os.system("cls" if os.name == "nt" else "clear")
+            print("Aucun joueur")
+            sleep(1)
+            return
+        for joueur in self.joueurs:
+            print(joueur)
+
+    def quit(self):
+        """Quit the application"""
+        exit()
 
 
-# Define the title and options for the menu
-title = "Menu"
-options = [
-    MenuOption(name="Ajouter des joueur", value=1),
-    MenuOption(name="Lister les joueur", value=2),
-    MenuOption(name="Créer un tournois", value=3),
-    MenuOption(name="Exit", value=4),
-]
+# Creation de la vue du menu
+menu_view = MenuView(
+    title="Menu principal",
+    options=[
+        MenuOption(name="Ajouter un joueur", value="add_joueur"),
+        MenuOption(name="Afficher les joueurs", value="get_joueurs"),
+        MenuOption(name="Quitter", value="quit"),
+    ],
+)
 
-# Create an instance of the view
-view = MenuView(title=title, options=options)
+# Creation de la vue du formulaire
+joueur_form_view = JoueurFormView()
 
-# Create an instance of the controller and pass the view to it
-controller = TournamentController(view)
+# Creation du controleur
+controller = TournamentController(
+    menu_view=menu_view, joueur_form_view=joueur_form_view
+)
 
-# Run the controller
-controller.run()
+# Affichage du menu et gestion des choix
+while True:
+    controller.display_menu()
