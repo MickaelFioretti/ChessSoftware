@@ -3,8 +3,8 @@ from time import sleep
 import os
 
 # views
-from view.menuView import MenuView, MenuOption
-from view.joueurFormView import JoueurFormView
+from view.menu_view import MenuView, MenuOption
+from view.joueur_form_view import JoueurFormView
 
 # Models
 from models.joueur import Joueur
@@ -21,14 +21,19 @@ class TournamentController:
     def display_menu(self):
         """Display the menu"""
         choice = self.menu_view.display()
-        if choice == 1:
-            self.add_joueur()
-        elif choice == 2:
-            self.display_joueurs()
-        elif choice == 3:
-            self.quit()
-        else:
-            print("Choix invalide")
+
+        def user_choice(choice):
+            match choice:
+                case 1:
+                    self.add_joueur()
+                case 2:
+                    self.display_joueurs()
+                case 3:
+                    self.quit()
+                case _:
+                    print("Choix invalide")
+
+        user_choice(choice)
 
     def add_joueur(self):
         """Add a new player"""
