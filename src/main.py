@@ -1,4 +1,4 @@
-from controller.tournamentController import TournamentController
+from controller.tournament_controller import TournamentController
 
 
 def main():
