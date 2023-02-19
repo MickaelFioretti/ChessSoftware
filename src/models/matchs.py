@@ -1,21 +1,21 @@
+from pydantic.dataclasses import dataclass
+
+
+@dataclass
 class Matchs:
     """Class Matchs"""
 
-    def __init__(self, joueur1, joueur2, joueur1_score, joueur2_score):
-        """Constructor"""
-        self.joueur1 = joueur1
-        self.joueur2 = joueur2
-        self.joueur1_score = joueur1_score
-        self.joueur2_score = joueur2_score
+    joueur1: str
+    joueur2: str
+    result: str = None
 
-    def __str__(self):
-        """Method returning match information"""
-        return f"""
-                Joueur 1 : {self.joueur1}\n
-                Joueur 2 : {self.joueur2}\n
-                Score Joueur 1 : {self.joueur1_score}\n
-                Score Joueur 2 : {self.joueur2_score}
-            """
-
-    def __repr__(self):
-        return str(self)
+    def update_result(self, result):
+        """Update the result of the match"""
+        self.result = result
+        if result == "win":
+            self.joueur1.add_points(1)
+        elif result == "loose":
+            self.joueur2.add_points(1)
+        elif result == "draw":
+            self.joueur1.add_points(0.5)
+            self.joueur2.add_points(0.5)

@@ -1,54 +1,43 @@
+from pydantic.dataclasses import dataclass
 from typing import List
 from .matchs import Matchs
 from .joueur import Joueur
+from .tours import Tours
 
 
+@dataclass
 class Tournois:
     """Class representing a tournament"""
 
-    def __init__(
-        self,
-        name: str,
-        location: str,
-        date: str,
-        tours: List[Matchs],
-        joueurs: List[Joueur],
-        time_control: str,
-        description: str,
-        number_of_rounds: int = 4,
-    ):
-        """Constructor"""
-        self.name = name
-        self.location = location
-        self.date = date
-        self.number_of_rounds = number_of_rounds
-        self.tours = tours
-        self.joueurs = joueurs
-        self.time_control = time_control
-        self.description = description
+    name: str
+    location: str
+    date_debut: str
+    date_fin: str
+    nombre_de_tours: int = 4
+    numero_tour_actuel: int = 1
+    tours: List[Matchs]
+    joueurs: List[Joueur]
+    description: str
 
     def add_player(self, player):
         """Method adding a player to the tournament"""
         self.joueurs.append(player)
 
-    def __str__(self):
-        """Method returning tournament information"""
-        return f"""
-                Nom du tournoi : {self.name}\n
-                Lieu : {self.location}\n
-                Date : {self.date}\n
-                Nombre de tours : {self.number_of_rounds}\n
-                Liste des joueurs : {self.joueurs}\n
-                Contrôle du temps : {self.time_control}\n
-                Description : {self.description}
-            """
+    def add_tour(self, tour: Tours):
+        """Method adding a round to the tournament"""
+        self.tours.append(tour)
 
-    def play_round(self):
-        """Method playing a round"""
-        # generate pair
-        # joue le resultat des pairs
-        # en fonction du résultat
-        # joueur1.defeat ou joueur1.win et joueur2.defeat ou joueur2.win
-
-    def __repr__(self):
-        return str(self)
+    def classement_final(self):
+        """Method returning the final ranking of the tournament"""
+        classement = {}
+        for tour in self.tours:
+            for match in tour.matchs:
+                joueur1, joueur2 = match[0][0], match[1][0]
+                score1, score2 = match[0][1], match[1][1]
+                if joueur1 not in classement:
+                    classement[joueur1] = joueur1.ranking
+                if joueur2 not in classement:
+                    classement[joueur2] = joueur2.ranking
+                classement[joueur1] += score1
+                classement[joueur2] += score2
+            return sorted(classement.items(), key=lambda x: x[1], reverse=True)

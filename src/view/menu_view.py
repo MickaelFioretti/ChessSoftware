@@ -1,10 +1,15 @@
+# --- PIP ---
 from pydantic.dataclasses import dataclass
 from typing import List
-import os
+
+# --- LOCAL ---
+from utils.clear_shell import clear_shell
 
 
 @dataclass
 class MenuOption:
+    """Class to represent a menu option"""
+
     name: str
     value: str
 
@@ -18,7 +23,7 @@ class MenuView:
 
     def display(self):
         """Display the menu"""
-        os.system("cls" if os.name == "nt" else "clear")
+        clear_shell()
         print(self.title)
         print()
         for i, option in enumerate(self.options):
