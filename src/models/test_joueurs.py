@@ -15,7 +15,7 @@ def test_init_Joueur() -> None:
     assert NORMAL_PLAYER.first_name == "Dupont"
     assert NORMAL_PLAYER.last_name == "Jean"
     assert NORMAL_PLAYER.birth_date == "01/01/1900"
-    assert NORMAL_PLAYER.sexe == "M"
+    assert NORMAL_PLAYER.genre == "M"
     assert NORMAL_PLAYER.ranking == 1
 
 
