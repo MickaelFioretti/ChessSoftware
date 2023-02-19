@@ -6,8 +6,9 @@ authors = ["Etilium <fiorettimickael1@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11.1"
-pydantic = "^1.10.2"
+python = "^3.11"
+pydantic = "^1.10.4"
+
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
