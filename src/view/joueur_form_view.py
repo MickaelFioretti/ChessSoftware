@@ -1,5 +1,9 @@
-class JoueurFormView:
-    def display(self):
+from .base import BaseView
+
+
+class JoueurFormView(BaseView):
+    def display(self) -> dict:
+        self.clear_shell()
         print("Ajouter un joueur")
         print("Entrez les infomations suivantes:")
         first_name = input("Prénom: ")

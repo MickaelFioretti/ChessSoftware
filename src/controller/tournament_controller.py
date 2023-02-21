@@ -2,9 +2,12 @@
 from view.menu_view import MenuView, MenuOption
 from view.joueur_form_view import JoueurFormView
 from view.joueur_view import JoueurView
+from view.tournoi_form_view import TournoiFormView
 
 # --- Models ---
 from models.joueur import Joueur
+from models.tournois import Tournois
+from models.tour import Tour
 
 # --- utils ---
 from utils.clear_shell import clear_shell
@@ -15,6 +18,7 @@ from utils.clear_shell import clear_shell
 """
 
 
+# --- Controller ---
 class TournamentController:
     """Class to manage the tournament"""
 
@@ -55,21 +59,29 @@ class TournamentController:
         def user_choice(choice):
             match choice:
                 case 1:
-                    self.add_joueur()
+                    self.add_tournoi()
                 case 2:
-                    self.display_joueurs()
+                    self.add_joueur()
                 case 3:
-                    self.jouer_un_tour()
+                    self.display_joueurs()
                 case 4:
+                    self.jouer_un_tour()
+                case 5:
                     self.quit()
                 case _:
                     print("Choix invalide")
 
         user_choice(choice)
 
+    def add_tournoi(self):
+        """Add a new tournament"""
+        clear_shell()
+        tournoi_data = TournoiFormView().display()
+        tournoi = Tournois(**tournoi_data)
+        self.tournois.append(tournoi)
+
     def add_joueur(self):
         """Add a new player"""
-        clear_shell()
         joueur_data = JoueurFormView().display()
         joueur = Joueur(**joueur_data)
         self.joueurs.append(joueur)
@@ -81,22 +93,33 @@ class TournamentController:
         # press enter to continue
         input("\nAppuyez sur entrée pour continuer")
 
+    def jouer_un_tour(self):
+        """Play a round"""
+        clear_shell()
+        print("Jouer un tour")
+        # Creation d'un tour
+        tour = Tour(self.joueurs)
+        # generation des pairs de joueurs pour le tour
+
+        # Affichage des matchs
+        print("Matchs:")
+        for match in tour.matchs:
+            print(match[0].first_name, "vs", match[1].first_name)
+        # press enter to continue
+        input("\nAppuyez sur entrée pour continuer")
+
     def quit(self):
         """Quit the application"""
         exit()
 
-    def jouer_un_tour(self):
-        """Method to play a round"""
-        nombre_de_tours_joues = len(self.matchs)
-        print(f"Tour {nombre_de_tours_joues + 1}")
-        for i, match in enumerate(self.matchs[nombre_de_tours_joues]):
-            print(f"match {i + 1}: {match[0]} vs {match[1]}")
 
+# --- End Controller ---
 
 # Creation de la vue du menu
 menu_view = MenuView(
     title="Menu principal",
     options=[
+        MenuOption(name="Ajouter un tournoi", value="add_tournoi"),
         MenuOption(name="Ajouter un joueur", value="add_joueur"),
         MenuOption(name="Afficher les joueurs", value="get_joueurs"),
         MenuOption(name="Jouer un tour", value="jouer_un_tour"),
