@@ -2,7 +2,7 @@ from pydantic.dataclasses import dataclass
 
 
 @dataclass
-class Matchs:
+class Match:
     """Class Matchs"""
 
     joueur1: str

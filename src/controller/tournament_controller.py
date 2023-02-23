@@ -6,7 +6,7 @@ from view.tournoi_form_view import TournoiFormView
 
 # --- Models ---
 from models.joueur import Joueur
-from models.tournois import Tournois
+from models.tournoi import Tournoi
 from models.tour import Tour
 
 # --- utils ---
@@ -77,7 +77,7 @@ class TournamentController:
         """Add a new tournament"""
         clear_shell()
         tournoi_data = TournoiFormView().display()
-        tournoi = Tournois(**tournoi_data)
+        tournoi = Tournoi(**tournoi_data)
         self.tournois.append(tournoi)
 
     def add_joueur(self):

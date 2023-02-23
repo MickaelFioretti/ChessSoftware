@@ -6,7 +6,7 @@ from .tour import Tour
 
 
 @dataclass
-class Tournois:
+class Tournoi:
     """Class representing a tournament"""
 
     name: str
