@@ -1,4 +1,4 @@
-class TournoiFormView:
+class TournamentFormView:
     def display(self):
         print("Ajouter un tournoi")
         print("Entrez les infomations suivantes:")

@@ -2,12 +2,12 @@
 from view.menu_view import MenuView, MenuOption
 from view.joueur_form_view import JoueurFormView
 from view.joueur_view import JoueurView
-from view.tournoi_form_view import TournoiFormView
+from view.tournoi_form_view import TournamentFormView
 
 # --- Models ---
-from models.joueur import Joueur
-from models.tournoi import Tournoi
-from models.tour import Tour
+from models.player import Player
+from models.tournament import Tournament
+from models.round import Round
 
 # --- utils ---
 from utils.clear_shell import clear_shell
@@ -26,25 +26,25 @@ class TournamentController:
         self.menu_view = menu_view
         self.joueurs = [
             # Creation de joueurs par defaut 4 joueurs
-            Joueur(
+            Player(
                 first_name="Jean",
                 last_name="Dupont",
                 birth_date="01/01/2000",
                 ranking=0,
             ),
-            Joueur(
+            Player(
                 first_name="Pierre",
                 last_name="Durand",
                 birth_date="01/01/2000",
                 ranking=0,
             ),
-            Joueur(
+            Player(
                 first_name="Paul",
                 last_name="Martin",
                 birth_date="01/01/2000",
                 ranking=0,
             ),
-            Joueur(
+            Player(
                 first_name="Jacques",
                 last_name="Dupond",
                 birth_date="01/01/2000",
@@ -76,14 +76,14 @@ class TournamentController:
     def add_tournoi(self):
         """Add a new tournament"""
         clear_shell()
-        tournoi_data = TournoiFormView().display()
-        tournoi = Tournoi(**tournoi_data)
+        tournoi_data = TournamentFormView().display()
+        tournoi = Tournament(**tournoi_data)
         self.tournois.append(tournoi)
 
     def add_joueur(self):
         """Add a new player"""
         joueur_data = JoueurFormView().display()
-        joueur = Joueur(**joueur_data)
+        joueur = Player(**joueur_data)
         self.joueurs.append(joueur)
 
     def display_joueurs(self):
@@ -98,9 +98,10 @@ class TournamentController:
         clear_shell()
         print("Jouer un tour")
         # Creation d'un tour
-        tour = Tour(self.joueurs)
+        tour = Round(self.joueurs)
         # generation des pairs de joueurs pour le tour
-
+        # recupere les joueurs et les melange aleatoirement pour les paires de joueurs
+        Tournament.create_round()
         # Affichage des matchs
         print("Matchs:")
         for match in tour.matchs:

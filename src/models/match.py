@@ -1,21 +1,18 @@
+# --- import ---
 from pydantic.dataclasses import dataclass
+from typing import List
 
 
 @dataclass
 class Match:
     """Class Matchs"""
 
-    joueur1: str
-    joueur2: str
-    result: str = None
+    score_player1: int = 0
+    score_player2: int = 0
+    winner: str = ""
+    name: str = ""
 
-    def update_result(self, result):
-        """Update the result of the match"""
-        self.result = result
-        if result == "win":
-            self.joueur1.add_points(1)
-        elif result == "loose":
-            self.joueur2.add_points(1)
-        elif result == "draw":
-            self.joueur1.add_points(0.5)
-            self.joueur2.add_points(0.5)
+    def __init__(self, player_pair: List[str]) -> None:
+        """Method initializing a match"""
+        self.player1 = player_pair[0]
+        self.player2 = player_pair[1]
