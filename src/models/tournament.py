@@ -4,6 +4,8 @@ from typing import List
 from .round import Round
 from .player import Player
 
+# flake8: noqa
+
 
 @dataclass
 class Tournament:
@@ -48,7 +50,6 @@ class Tournament:
             )
 
             # --- Sort by rank if same score ---
-            # TODO: Refaire cette partie
             for i in range(len(score_sorted_players)):
                 player = score_sorted_players[i]
                 sorted_players.append(player)
@@ -64,14 +65,6 @@ class Tournament:
                         lo_player = player
                     sorted_players.append(hi_player)
                     sorted_players.append(lo_player)
-
-            # --- Split players in two parts ---
-            # flake8: noqa
-            # TODO: Refaire cette partie
-            sup_part = sorted_players[len(sorted_players) // 2 :]
-            inf_part = sorted_players[: len(sorted_players) // 2]
-
-            players_pairs = []
 
             # --- Create pairs ---
             # Split players in two parts
@@ -96,6 +89,9 @@ class Tournament:
 
         return players_pairs
 
-    def get_ranking(self):
-        """Method getting the ranking of the tournament"""
-        return sorted(self.players, key=lambda x: x.total_score, reverse=True)
+    def get_ranking(self, by_score=False):
+        """Method returning the ranking of the tournament"""
+        if by_score:
+            return sorted(self.players, key=lambda x: x.total_score, reverse=True)
+        else:
+            return sorted(self.players, key=lambda x: x.ranking, reverse=True)
