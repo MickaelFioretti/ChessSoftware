@@ -5,6 +5,9 @@ from typing import List
 # --- LOCAL ---
 from utils.clear_shell import clear_shell
 
+# --- CONTROLLER ---
+from controller.player import update_ranking
+
 # --- View ---
 from view.base import BaseView
 from view.player import CreatePlayer
@@ -56,10 +59,11 @@ class MainMenu(BaseView):
 
             # --- on cree un nouveau tournoi ---
             if user_input == "1":
-                self.create_tournament()
+                tournament = create_tournament()
                 break
 
             # --- on charge un tournoi ---
+            # TODO: load tournament
             elif user_input == "2":
                 pass
 
@@ -126,8 +130,40 @@ class MainMenu(BaseView):
 
         # --- on recupere les resultats une fois le tournoi fini ---
         if user_input == "1":
-            ranking = self.play_tournament()
-            print(ranking)
-            # TODO: save tournament
+            rankings = self.play_tournament(tournament, new_tournament_loaded=True)
+        else:
+            quit()
+
+        # --- on affiche le classement ---
+        print()
+        print(f"Tournoir {tournament.name} terminé !\n Résultats:")
+        for i, player in enumerate(rankings):
+            print(f"{str(i + 1)} - {player}")
+
+        # --- on met a jour les classements ---
+        print()
+        user_input = self.get_user_input(
+            msg_display="Mise a jour des classements:\n"
+            "1 - Automatiquement\n"
+            "2 - Manuellement\n"
+            "q - Quitter\n",
+            msg_error="Veuillez entrer une option valide",
+            value_type="selection",
+            assertions=["1", "2", "q"],
+        )
+        if user_input == "1":
+            for i, player in enumerate(rankings):
+                print(player.name)
+                update_ranking(player, i + 1)
+
+        elif user_input == "2":
+            for player in rankings:
+                rank = self.get_user_input(
+                    msg_display=f"Classement de {player.name}:\n",
+                    msg_error="Veuillez entrer un nombre valide",
+                    value_type="numeric",
+                )
+                update_ranking(player, rank)
+
         else:
             quit()

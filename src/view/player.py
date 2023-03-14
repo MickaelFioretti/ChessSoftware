@@ -25,3 +25,32 @@ class CreatePlayer(BaseView):
             "total_score": 0,
             "ranking": ranking,
         }
+
+
+class LoadPlayer(BaseView):
+    def display_menu(self, nb_players_to_load):
+        # TODO: load players from database
+        all_players = []
+        for i in range(nb_players_to_load):
+            print(f"Plus que {nb_players_to_load - i} joueurs a charger")
+            display_msg = "Entrez le nom du joueur: \n"
+
+            assertions = []
+            for i, player in enumerate(all_players):
+                display_msg += (
+                    f"{i + 1} - {player['last_name']} {player['first_name']}\n"
+                )
+                assertions.append(str(i + 1))
+
+            user_input = int(
+                self.get_user_input(
+                    msg_display=display_msg,
+                    msg_error="Veuillez entrer un nom valide",
+                    value_type="selection",
+                    assertions=assertions,
+                )
+            )
+            if all_players[user_input - 1] not in all_players:
+                all_players.append(all_players[user_input - 1])
+            else:
+                print("Ce joueur a déjà été chargé")
