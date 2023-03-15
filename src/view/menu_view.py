@@ -4,6 +4,7 @@ from pydantic.dataclasses import dataclass
 # --- CONTROLLER ---
 from controller.player import update_ranking
 from controller.tournament import create_tournament, play_tournament
+from controller.database import load_data, save_data
 
 # --- View ---
 from view.base_view import BaseView
@@ -49,6 +50,7 @@ class MainMenu(BaseView):
                     serialized_player = CreatePlayer().display_menu()
                     print(serialized_player)
                     # TODO: save player
+                    save_data("players", serialized_player)
 
             # --- on affiche les rapports ---
             elif user_input == "4":
@@ -80,7 +82,9 @@ class MainMenu(BaseView):
                             if user_input == "r":
                                 break
                             elif user_input == "1":
-                                pass
+                                self.clear_shell()
+                                print(load_data("players"))
+                                input("Appuyez sur une touche pour continuer")
                             elif user_input == "2":
                                 pass
 

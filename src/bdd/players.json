@@ -1,0 +1,20 @@
+[
+  {
+      "id": 1,
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "elo_rating": 1200
+  },
+  {
+      "id": 2,
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "elo_rating": 1100
+  },
+  {
+      "id": 3,
+      "first_name": "Charlie",
+      "last_name": "Davis",
+      "elo_rating": 1250
+  }
+]
