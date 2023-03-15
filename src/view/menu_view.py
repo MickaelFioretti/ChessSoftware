@@ -1,51 +1,20 @@
 # --- PIP ---
 from pydantic.dataclasses import dataclass
-from typing import List
-
-# --- LOCAL ---
-from utils.clear_shell import clear_shell
 
 # --- CONTROLLER ---
 from controller.player import update_ranking
 from controller.tournament import create_tournament, play_tournament
 
 # --- View ---
-from view.base import BaseView
+from view.base_view import BaseView
 from view.player import CreatePlayer
-
-
-@dataclass
-class MenuOption:
-    """Class to represent a menu option"""
-
-    name: str
-    value: str
-
-
-@dataclass
-class MenuView:
-    """Class to display a menu and handle user input"""
-
-    title: str
-    options: List[MenuOption]
-
-    def display(self):
-        """Display the menu"""
-        clear_shell()
-        print(self.title)
-        print()
-        for i, option in enumerate(self.options):
-            print(f"{i + 1} - {option.name}")
-        print()
-        choice = input("Choisissez une option: ")
-        return int(choice)
 
 
 @dataclass
 class MainMenu(BaseView):
     def display_main_menu(self):
         while True:
-            clear_shell()
+            self.clear_shell()
             user_input = self.get_user_input(
                 msg_display="Choisissez une option: \n"
                 "1 - Créer un nouveau tournoi\n"
@@ -70,7 +39,7 @@ class MainMenu(BaseView):
 
             # --- on cree des joueurs ---
             elif user_input == "3":
-                clear_shell()
+                self.clear_shell()
                 user_input = self.get_user_input(
                     msg_display="Nombre de joueurs a créer:\n",
                     msg_error="Veuillez entrer un nombre valide",
@@ -84,7 +53,7 @@ class MainMenu(BaseView):
             # --- on affiche les rapports ---
             elif user_input == "4":
                 while True:
-                    clear_shell()
+                    self.clear_shell()
                     user_input = self.get_user_input(
                         msg_display="Choisissez une option: \n"
                         "1 - Rapport des joueurs\n"
@@ -98,7 +67,7 @@ class MainMenu(BaseView):
                         break
                     elif user_input == "1":
                         while True:
-                            clear_shell()
+                            self.clear_shell()
                             user_input = self.get_user_input(
                                 msg_display="Voir le classement par:\n"
                                 "1 - Rang\n"
@@ -122,7 +91,7 @@ class MainMenu(BaseView):
                 quit()
 
         # on joue le tournoi
-        clear_shell()
+        self.clear_shell()
         user_input = self.get_user_input(
             msg_display="Que voulez-vous faire ?\n"
             "1 - Jouer le tournoi\n"
@@ -139,13 +108,13 @@ class MainMenu(BaseView):
             quit()
 
         # --- on affiche le classement ---
-        clear_shell()
+        self.clear_shell()
         print(f"Tournoir {tournament.name} terminé !\n Résultats:")
         for i, player in enumerate(rankings):
             print(f"{str(i + 1)} - {player}")
 
         # --- on met a jour les classements ---
-        clear_shell()
+        self.clear_shell()
         user_input = self.get_user_input(
             msg_display="Mise a jour des classements:\n"
             "1 - Automatiquement\n"
@@ -162,7 +131,7 @@ class MainMenu(BaseView):
 
         elif user_input == "2":
             for player in rankings:
-                clear_shell()
+                self.clear_shell()
                 rank = self.get_user_input(
                     msg_display=f"Classement de {player.name}:\n",
                     msg_error="Veuillez entrer un nombre valide",

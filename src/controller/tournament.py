@@ -2,7 +2,7 @@
 from models.tournament import Tournament
 
 # --- Views ---
-from view.base import BaseView
+from view.base_view import BaseView
 from view.tournament import CreateTournament
 from view.player import LoadPlayer
 

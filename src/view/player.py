@@ -1,4 +1,4 @@
-from view.base import BaseView
+from view.base_view import BaseView
 
 
 class CreatePlayer(BaseView):
