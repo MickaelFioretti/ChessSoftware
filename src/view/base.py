@@ -1,14 +1,10 @@
 # --- Imports ---
-from abc import ABC, abstractmethod
+from abc import ABC
 import os
 from typing import List
 
 
 class BaseView(ABC):
-    @abstractmethod
-    def display(self) -> dict:
-        pass
-
     def clear_shell(self):
         """Clear the shell"""
         os.system("cls" if os.name == "nt" else "clear")
@@ -58,10 +54,10 @@ class BaseView(ABC):
 
     @staticmethod
     def verify_date(value_to_test):
-        if "-" not in value_to_test:
+        if "/" not in value_to_test:
             return False
         else:
-            split_date = value_to_test.split("-")
+            split_date = value_to_test.split("/")
             for date in split_date:
                 if not date.isnumeric():
                     return False

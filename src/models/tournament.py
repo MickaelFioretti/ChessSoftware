@@ -25,10 +25,6 @@ class Tournament:
         """Method adding a player to the tournament"""
         self.players.append(player)
 
-    def add_tour(self, tour: Round):
-        """Method adding a round to the tournament"""
-        self.rounds.append(tour)
-
     def create_round(self, round_number):
         """Method creating a round"""
         player_pairs = self.create_players_pairs(current_round=round_number)

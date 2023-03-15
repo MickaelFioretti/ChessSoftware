@@ -3,6 +3,7 @@ from view.base import BaseView
 
 class CreatePlayer(BaseView):
     def display_menu(self):
+        self.clear_shell()
         last_name = input("Entrez le nom du joueur: ")
         first_name = input("Entrez le prénom du joueur: ")
         birth_date = self.get_user_input(
@@ -54,3 +55,6 @@ class LoadPlayer(BaseView):
                 all_players.append(all_players[user_input - 1])
             else:
                 print("Ce joueur a déjà été chargé")
+                nb_players_to_load += 1
+
+        return all_players

@@ -1,20 +1,20 @@
 # --- import ---
 from pydantic.dataclasses import dataclass
+import dataclasses
 from typing import List
 import random
 
 # --- models ---
-from models.player import Player
 
 
 @dataclass
 class Match:
     """Class Matchs"""
 
-    players_pair: List[Player] = []
-    player1: str = players_pair[0]
+    players_pair: List[str] = dataclasses.field(default_factory=list)
+    player1: str = None
     score_player1: int = 0
-    player2: str = players_pair[1]
+    player2: str = None
     score_player2: int = 0
     winner: str = ""
     name: str = ""
@@ -22,6 +22,10 @@ class Match:
     def play_match(self) -> None:
         """Method playing a match"""
         winner = random.choice([1, 2, 3])
+
+        # --- set player ---
+        self.player1 = self.players_pair[0]
+        self.player2 = self.players_pair[1]
 
         # --- match winner ---
         match winner:

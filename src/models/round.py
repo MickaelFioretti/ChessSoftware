@@ -1,10 +1,10 @@
 # --- imports ---
 from pydantic.dataclasses import dataclass
-from typing import List
+import dataclasses
+from typing import List, Tuple
 
 # --- models ---
 from models.match import Match
-from models.player import Player
 
 # --- controller ---
 from controller.timestamp import get_timestamp
@@ -15,8 +15,8 @@ class Round:
     """Class representing a round"""
 
     name: str
-    players_pair: List[Player] = []
-    matchs: List[Match] = []
+    players_pair: List[Tuple[str, str]] = dataclasses.field(default_factory=list)
+    matchs: List[Tuple[str, str]] = dataclasses.field(default_factory=list)
     start_date: str = get_timestamp()
     end_date: str = ""
     load_matchs: bool = False
