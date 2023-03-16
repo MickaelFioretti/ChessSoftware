@@ -1,0 +1,21 @@
+{
+    "players": [
+        {
+            "last_name": "toto",
+            "first_name": "titi",
+            "birth_date": "24/07/2000",
+            "total_score": 0,
+            "ranking": 0,
+            "id": "13b38e2b-af86-4a9d-84fb-5f33f59c07ea"
+        },
+        {
+            "last_name": "Fioretti",
+            "first_name": "Mickael",
+            "birth_date": "24/07/2000",
+            "total_score": 0,
+            "ranking": 0,
+            "id": "a6172e0f-f607-4723-a8f1-73f25ad80c36"
+        }
+    ],
+    "tournament": []
+}

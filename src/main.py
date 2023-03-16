@@ -1,5 +1,5 @@
 # --- View ---
-from view.menu_view import MainMenu
+from view.main_menu import MainMenu
 
 
 def main():
