@@ -4,11 +4,12 @@ from pydantic.dataclasses import dataclass
 # --- CONTROLLER ---
 from controller.player import update_ranking
 from controller.tournament import create_tournament, play_tournament
-from controller.database import load_data, save_data
+from controller.database import save_data
 
 # --- View ---
 from view.base_view import BaseView
 from view.player import CreatePlayer
+from view.report import Report
 
 
 @dataclass
@@ -83,10 +84,20 @@ class MainMenu(BaseView):
                                 break
                             elif user_input == "1":
                                 self.clear_shell()
-                                print(load_data("players"))
-                                input("Appuyez sur une touche pour continuer")
+                                sorted_players = Report().sort_player(
+                                    Report().player_list, by_rank=True
+                                )
+                                Report().display_player_report(
+                                    player_list=sorted_players
+                                )
                             elif user_input == "2":
-                                pass
+                                self.clear_shell()
+                                sorted_players = Report().sort_player(
+                                    Report().player_list, by_rank=False
+                                )
+                                Report().display_player_report(
+                                    player_list=sorted_players
+                                )
 
                     elif user_input == "2":
                         pass
