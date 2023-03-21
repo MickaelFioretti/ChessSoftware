@@ -1,3 +1,6 @@
+# --- import ---
+import os
+
 # --- Models ---
 from models.tournament import Tournament
 
@@ -8,6 +11,7 @@ from view.player import LoadPlayer
 
 # --- Controllers ---
 from controller.player import create_player, update_ranking
+from controller.database import save_data, load_player
 
 
 def create_tournament():
@@ -17,6 +21,7 @@ def create_tournament():
     user_entry = CreateTournament().display_menu()
 
     # Chargement des joueurs
+    os.system("clear")
     user_input = menu.get_user_input(
         msg_display="Que voulez-vous faire ?\n1 - Charger des joueurs existants\n2 - Créer des joueurs\n",
         msg_error="Veuillez entrer un nombre valide",
@@ -26,7 +31,7 @@ def create_tournament():
 
     # Chargement des joueurs existants
     if user_input == "1":
-        player = []
+        players = []
         user_input = menu.get_user_input(
             msg_display="Combien de joueurs voulez-vous charger ?\n",
             msg_error="Veuillez entrer un nombre valide",
@@ -36,17 +41,15 @@ def create_tournament():
             nb_players_to_load=int(user_input)
         )
         for serialized_player in serialized_players:
-            # TODO : save player in database
-            player.append(serialized_player)
-            player.append(player)
+            player = load_player(serialized_player)
+            players.append(player)
 
     # Creation de joueurs
     else:
         print(f"Creation de {str(user_entry['nb_players'])} joueurs")
         players = []
         while len(players) < int(user_entry["nb_players"]):
-            player = create_player()
-            players.append(player)
+            players.append(create_player())
 
     # Creation du tournoi
     tournament = Tournament(
@@ -59,7 +62,9 @@ def create_tournament():
         user_entry["description"],
     )
 
-    # TODO : save tournament in database
+    # --- Sauvegarde du tournoi ---
+    save_data("tournaments", tournament)
+
     return tournament
 
 

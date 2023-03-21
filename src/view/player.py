@@ -1,4 +1,5 @@
 from view.base_view import BaseView
+from controller.database import load_data
 
 
 class CreatePlayer(BaseView):
@@ -30,8 +31,8 @@ class CreatePlayer(BaseView):
 
 class LoadPlayer(BaseView):
     def display_menu(self, nb_players_to_load):
-        # TODO: load players from database
-        all_players = []
+        all_players = load_data("players")["players"]
+        serialized_players = []
         for i in range(nb_players_to_load):
             print(f"Plus que {nb_players_to_load - i} joueurs a charger")
             display_msg = "Entrez le nom du joueur: \n"
@@ -51,10 +52,10 @@ class LoadPlayer(BaseView):
                     assertions=assertions,
                 )
             )
-            if all_players[user_input - 1] not in all_players:
-                all_players.append(all_players[user_input - 1])
+            if all_players[user_input - 1] not in serialized_players:
+                serialized_players.append(all_players[user_input - 1])
             else:
                 print("Ce joueur a déjà été chargé")
                 nb_players_to_load += 1
 
-        return all_players
+        return serialized_players

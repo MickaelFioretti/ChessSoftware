@@ -15,8 +15,7 @@ class Tournament:
     location: str
     date_debut: str
     date_fin: str
-    nombre_de_tours: int = 4
-    nb_rounds: int = 1
+    nb_rounds: int = 4
     rounds: List[Round] = List[Round]
     players: List[players] = List[Player]
     description: str = ""

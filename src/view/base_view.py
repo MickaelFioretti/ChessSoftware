@@ -68,9 +68,9 @@ class BaseView(ABC):
         display_msg = display_msg
         assertions = assertions
 
-        for i, data in enumerate(iterable):
-            display_msg = display_msg + f"{i+1} - {data['name']}\n"
-            assertions.append(str(i + 1))
+        for index, item in enumerate(iterable):
+            display_msg += f"{index + 1} - {item['first_name']} {item['last_name']} \n"
+            assertions.append(str(index + 1))
 
         return {
             "msg": display_msg,

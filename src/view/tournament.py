@@ -9,6 +9,7 @@ from controller.timestamp import get_timestamp
 class CreateTournament(BaseView):
     def display_menu(self):
         date = get_timestamp()
+        self.clear_shell()
         print(date + " - Création d'un nouveau tournoi")
 
         name = input("Entrez le nom du tournoi: \n")
@@ -41,6 +42,10 @@ class CreateTournament(BaseView):
             msg_display="Entrez le nombre de rounds du tournoi: \n",
             msg_error="Veuillez entrer un nombre de rounds valide",
             value_type="numeric",
+        )
+
+        print(
+            "nb_rounds :",
         )
 
         description = input("Entrez une description du tournoi: \n")

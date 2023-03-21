@@ -21,8 +21,6 @@ def create_player():
         user_entries["ranking"],
     )
 
-    # TODO: save player
-
     return player
 
 
