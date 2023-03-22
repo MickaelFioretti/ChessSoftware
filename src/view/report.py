@@ -7,8 +7,8 @@ from operator import itemgetter
 
 # --- Report ---
 class Report(BaseView):
-    player_list = load_data("players")
-    tournament_list = load_data("tournaments")
+    player_list = load_data()
+    tournament_list = load_data()
 
     def display_player_report(self, player_list=[]):
         player_list = player_list

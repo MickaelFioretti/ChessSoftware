@@ -38,3 +38,14 @@ class Round:
         self.end_date = get_timestamp()
         for match in self.matchs:
             match.play_match()
+
+    def get_serialized_round(self):
+        """Method returning serialized round"""
+        serialized_round = {
+            "name": self.name,
+            "players_pair": self.players_pair,
+            "matchs": self.matchs,
+            "start_date": self.start_date,
+            "end_date": self.end_date,
+        }
+        return serialized_round

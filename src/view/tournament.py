@@ -44,10 +44,6 @@ class CreateTournament(BaseView):
             value_type="numeric",
         )
 
-        print(
-            "nb_rounds :",
-        )
-
         description = input("Entrez une description du tournoi: \n")
 
         return {

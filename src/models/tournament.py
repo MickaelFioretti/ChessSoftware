@@ -1,6 +1,7 @@
 from pydantic.dataclasses import dataclass
 from typing import List
-
+from collections import defaultdict
+import dataclasses
 from .round import Round
 from .player import Player
 
@@ -16,8 +17,8 @@ class Tournament:
     date_debut: str
     date_fin: str
     nb_rounds: int = 4
-    rounds: List[Round] = List[Round]
-    players: List[players] = List[Player]
+    rounds: List[tuple] = dataclasses.field(default_factory=list)
+    players: List = dataclasses.field(default_factory=list)
     description: str = ""
 
     def add_player(self, player):
@@ -32,6 +33,7 @@ class Tournament:
 
     def create_players_pairs(self, current_round):
         """Method creating pairs of players"""
+        players_pairs = []
 
         # --- First round sort player by rank ---
         if current_round == 0:
@@ -67,8 +69,6 @@ class Tournament:
             sup_part = sorted_players[half_len:]
             inf_part = sorted_players[:half_len]
 
-            players_pairs = []
-
             # Create pairs
             for i, player in enumerate(sup_part):
                 for player2 in inf_part:
@@ -90,3 +90,24 @@ class Tournament:
             return sorted(self.players, key=lambda x: x.total_score, reverse=True)
         else:
             return sorted(self.players, key=lambda x: x.ranking, reverse=True)
+
+    def get_serializeed_tournament(self):
+        """Method returning the serialized tournament"""
+        serialized_tournament = {
+            "name": self.name,
+            "location": self.location,
+            "date_debut": self.date_debut,
+            "date_fin": self.date_fin,
+            "nb_rounds": self.nb_rounds,
+            "rounds": [],
+            "players": [],
+            "description": self.description,
+        }
+
+        for player in self.players:
+            serialized_tournament["players"].append(player.get_serialized_player())
+
+        for round in self.rounds:
+            serialized_tournament["rounds"].append(round.get_serialized_round())
+
+        return serialized_tournament

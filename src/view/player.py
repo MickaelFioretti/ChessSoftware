@@ -31,7 +31,7 @@ class CreatePlayer(BaseView):
 
 class LoadPlayer(BaseView):
     def display_menu(self, nb_players_to_load):
-        all_players = load_data("players")["players"]
+        all_players = load_data()["players"]
         serialized_players = []
         for i in range(nb_players_to_load):
             print(f"Plus que {nb_players_to_load - i} joueurs a charger")

@@ -58,12 +58,13 @@ def create_tournament():
         user_entry["date_debut"],
         user_entry["date_fin"],
         user_entry["nb_rounds"],
+        [],
         players,
         user_entry["description"],
     )
 
     # --- Sauvegarde du tournoi ---
-    save_data("tournaments", tournament)
+    save_data("tournaments", tournament.get_serializeed_tournament())
 
     return tournament
 

@@ -49,7 +49,6 @@ class MainMenu(BaseView):
                 )
                 for i in range(user_input):
                     serialized_player = CreatePlayer().display_menu()
-                    print(serialized_player)
                     # TODO: save player
                     save_data("players", serialized_player)
 
