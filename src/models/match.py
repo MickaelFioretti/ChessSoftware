@@ -1,7 +1,7 @@
 # --- import ---
 from pydantic.dataclasses import dataclass
 import dataclasses
-from typing import List
+from typing import List, Tuple
 import random
 
 # --- models ---
@@ -11,7 +11,7 @@ import random
 class Match:
     """Class Matchs"""
 
-    players_pair: List[str] = dataclasses.field(default_factory=list)
+    players_pair: List[Tuple[str, str]] = dataclasses.field(default_factory=list)
     player1: str = None
     score_player1: int = 0
     player2: str = None

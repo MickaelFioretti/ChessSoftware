@@ -96,17 +96,17 @@ def load_rounds(serialized_tournament, tournament):
 
 def load_match(serialized_match, tournament):
     for player in tournament.players:
-        if player.name == serialized_match["player1"]["first_name"]:
+        if player.first_name == serialized_match["player1"]["first_name"]:
             player1 = player
-        elif player.name == serialized_match["player2"]["first_name"]:
+        elif player.first_name == serialized_match["player2"]["first_name"]:
             player2 = player
 
     loaded_match = Match(
         players_pair=[player1, player2],
         name=serialized_match["name"],
     )
-    loaded_match.score = serialized_match["score_player1"]
-    loaded_match.score = serialized_match["score_player2"]
-    loaded_match.result = serialized_match["winner"]
+    loaded_match.score_player1 = serialized_match["score_player1"]
+    loaded_match.score_player2 = serialized_match["score_player2"]
+    loaded_match.winner = serialized_match["winner"]
 
     return loaded_match

@@ -35,7 +35,6 @@ class MainMenu(BaseView):
                 break
 
             # --- on charge un tournoi ---
-            # TODO: load tournament
             elif user_input == "2":
                 serialized_tournament = LoadTournament().display_menu()
                 if serialized_tournament:
@@ -55,7 +54,6 @@ class MainMenu(BaseView):
                 )
                 for i in range(user_input):
                     serialized_player = CreatePlayer().display_menu()
-                    # TODO: save player
                     save_data("players", serialized_player)
 
             # --- on affiche les rapports ---

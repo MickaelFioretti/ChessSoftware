@@ -114,20 +114,20 @@ def play_tournament(tournament, new_tournament_loaded=False):
 
                 # Round suivant
                 if user_input == "1":
-                    current_round.mark_as_completed()
+                    current_round.play_round()
                     break
 
                 # Voir le classement
                 elif user_input == "2":
                     print(f"Classement du tournoi {tournament.name}")
                     for i, player in enumerate(tournament.get_ranking()):
-                        print(f"{i + 1} - {player.name} ({player.score})")
+                        print(f"{i + 1} - {player.first_name} ({player.ranking})")
 
                 # Mettre à jour le classement
                 elif user_input == "3":
                     for player in tournament.players:
                         rank = menu.get_user_input(
-                            msg_display=f"Rang de {player.name} :\n",
+                            msg_display=f"Rang de {player.first_name} :\n",
                             msg_error="Veuillez entrer un nombre valide",
                             value_type="numeric",
                         )

@@ -30,12 +30,14 @@ class Round:
     def create_matchs(self):
         """Method creating matchs"""
         matchs = []
-        for i, pair in enumerate(self.players_paits):
+        for i, pair in enumerate(self.players_pair):
             matchs.append(Match(name=f"Match {i}", players_pair=pair))
         return matchs
 
     def play_round(self):
         self.end_date = get_timestamp()
+        print(f"Fin du {self.name} le {self.end_date}")
+        print("Resultats des matchs:")
         for match in self.matchs:
             match.play_match()
 

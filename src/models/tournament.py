@@ -63,25 +63,24 @@ class Tournament:
                     sorted_players.append(hi_player)
                     sorted_players.append(lo_player)
 
-            # --- Create pairs ---
-            # Split players in two parts
-            half_len = len(sorted_players) // 2
-            sup_part = sorted_players[half_len:]
-            inf_part = sorted_players[:half_len]
+        # --- Create pairs ---
+        # Split players in two parts
+        half_len = len(sorted_players) // 2
+        sup_part = sorted_players[half_len:]
+        inf_part = sorted_players[:half_len]
 
-            # Create pairs
-            for i, player in enumerate(sup_part):
-                for player2 in inf_part:
-                    if player2 not in player.played_with:
-                        players_pairs.append([player, player2])
-                        player.played_with.append(player2)
-                        player2.played_with.append(player)
-                        break
-                else:
-                    players_pairs.append([player, inf_part[i % half_len]])
-                    player.played_with.append(inf_part[i % half_len])
-                    inf_part[i % half_len].played_with.append(player)
-
+        # Create pairs
+        for i, player in enumerate(sup_part):
+            for player2 in inf_part:
+                if player2 not in player.played_with:
+                    players_pairs.append([player, player2])
+                    player.played_with.append(player2)
+                    player2.played_with.append(player)
+                    break
+            else:
+                players_pairs.append([player, inf_part[i % half_len]])
+                player.played_with.append(inf_part[i % half_len])
+                inf_part[i % half_len].played_with.append(player)
         return players_pairs
 
     def get_ranking(self, by_score=False):

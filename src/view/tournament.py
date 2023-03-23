@@ -61,9 +61,9 @@ class CreateTournament(BaseView):
 # --- view ---
 class LoadTournament(BaseView):
     def display_menu(self):
-        # TODO: load tournaments from database
         all_tournaments = load_data()["tournaments"]
         if all_tournaments:
+            self.clear_shell()
             builded_selection = self.build_selection(
                 iterable=all_tournaments,
                 display_msg="Choisir un tournoi: \n",
