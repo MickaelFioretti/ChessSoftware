@@ -3,8 +3,8 @@ from pydantic.dataclasses import dataclass
 
 # --- CONTROLLER ---
 from controller.player import update_ranking
-from controller.tournament import create_tournament, play_tournament
-from controller.database import save_data
+from controller.tournament import create_tournament, play_tournament, LoadTournament
+from controller.database import save_data, load_tournament
 
 # --- View ---
 from view.base_view import BaseView
@@ -37,7 +37,13 @@ class MainMenu(BaseView):
             # --- on charge un tournoi ---
             # TODO: load tournament
             elif user_input == "2":
-                pass
+                serialized_tournament = LoadTournament().display_menu()
+                if serialized_tournament:
+                    tournament = load_tournament(serialized_tournament)
+                    break
+                else:
+                    print("Aucun tournoi trouvé")
+                    continue
 
             # --- on cree des joueurs ---
             elif user_input == "3":

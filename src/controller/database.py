@@ -3,6 +3,9 @@ import json
 
 # --- models ---
 from models.player import Player
+from models.tournament import Tournament
+from models.match import Match
+from models.round import Round
 
 path_json = "/workspaces/ChessSoftware/src/bdd/"
 
@@ -45,3 +48,65 @@ def save_data(key, data):
     print(data_db)
     with open(f"{path_json}db.json", "w") as json_file:
         json.dump(data_db, json_file, indent=4)
+
+
+def load_tournament(serialized_tournament):
+    loaded_tournament = Tournament(
+        serialized_tournament["name"],
+        serialized_tournament["location"],
+        serialized_tournament["date_debut"],
+        serialized_tournament["date_fin"],
+        serialized_tournament["nb_rounds"],
+        [],
+        [
+            load_player(player, load_tournament_score=True)
+            for player in serialized_tournament["players"]
+        ],
+        serialized_tournament["description"],
+    )
+
+    loaded_tournament.rounds = load_rounds(serialized_tournament, loaded_tournament)
+
+    return loaded_tournament
+
+
+def load_rounds(serialized_tournament, tournament):
+    loaded_rounds = []
+
+    # --- ---
+    for round in serialized_tournament["rounds"]:
+        players_pair = []
+        for pair in round["players_pair"]:
+            for player in tournament.players:
+                if player.first_name == pair[0]["first_name"]:
+                    player1 = player
+                if player.first_name == pair[1]["first_name"]:
+                    player2 = player
+            players_pair.append([player1, player2])
+        loaded_round = Round(round["name"], players_pair, load_match=True)
+        loaded_round.matchs = [
+            load_match(match, tournament) for match in round["matchs"]
+        ]
+        loaded_round.start_date = round["start_date"]
+        loaded_round.end_date = round["end_date"]
+        loaded_rounds.append(loaded_round)
+
+    return loaded_rounds
+
+
+def load_match(serialized_match, tournament):
+    for player in tournament.players:
+        if player.name == serialized_match["player1"]["first_name"]:
+            player1 = player
+        elif player.name == serialized_match["player2"]["first_name"]:
+            player2 = player
+
+    loaded_match = Match(
+        players_pair=[player1, player2],
+        name=serialized_match["name"],
+    )
+    loaded_match.score = serialized_match["score_player1"]
+    loaded_match.score = serialized_match["score_player2"]
+    loaded_match.result = serialized_match["winner"]
+
+    return loaded_match

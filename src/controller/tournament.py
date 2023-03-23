@@ -6,12 +6,12 @@ from models.tournament import Tournament
 
 # --- Views ---
 from view.base_view import BaseView
-from view.tournament import CreateTournament
+from view.tournament import CreateTournament, LoadTournament
 from view.player import LoadPlayer
 
 # --- Controllers ---
 from controller.player import create_player, update_ranking
-from controller.database import save_data, load_player
+from controller.database import save_data, load_player, load_tournament
 
 
 def create_tournament():
@@ -144,9 +144,8 @@ def play_tournament(tournament, new_tournament_loaded=False):
 
                 # Charger un tournoi
                 elif user_input == "5":
-                    # serialized_loaded_tournament = LoadTournament().display_menu()
-                    # TODO : load tournament from database
-                    # tournament = load_tournament(serialized_loaded_tournament)
+                    serialized_loaded_tournament = LoadTournament().display_menu()
+                    tournament = load_tournament(serialized_loaded_tournament)
                     new_tournament_loaded = True
                     break
 

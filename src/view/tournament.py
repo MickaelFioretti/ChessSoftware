@@ -3,6 +3,7 @@ from view.base_view import BaseView
 
 # --- controller ---
 from controller.timestamp import get_timestamp
+from controller.database import load_data
 
 
 # --- view ---
@@ -61,7 +62,7 @@ class CreateTournament(BaseView):
 class LoadTournament(BaseView):
     def display_menu(self):
         # TODO: load tournaments from database
-        all_tournaments = []
+        all_tournaments = load_data()["tournaments"]
         if all_tournaments:
             builded_selection = self.build_selection(
                 iterable=all_tournaments,

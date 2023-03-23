@@ -69,7 +69,12 @@ class BaseView(ABC):
         assertions = assertions
 
         for index, item in enumerate(iterable):
-            display_msg += f"{index + 1} - {item['first_name']} {item['last_name']} \n"
+            if "name" in item:
+                display_msg += f"{index + 1} - {item['name']} \n"
+            elif "first_name" in item:
+                display_msg += (
+                    f"{index + 1} - {item['first_name']} {item['last_name']} \n"
+                )
             assertions.append(str(index + 1))
 
         return {
