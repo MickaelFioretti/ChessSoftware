@@ -5,6 +5,7 @@ from typing import List, Tuple
 
 # --- models ---
 from models.match import Match
+from models.player import Player
 
 # --- controller ---
 from controller.timestamp import get_timestamp
@@ -15,11 +16,11 @@ class Round:
     """Class representing a round"""
 
     name: str
-    players_pair: List[Tuple[str, str]] = dataclasses.field(default_factory=list)
-    matchs: List[Tuple[str, str]] = dataclasses.field(default_factory=list)
+    players_pair: List[Tuple[Player, Player]] = dataclasses.field(default_factory=list)
     start_date: str = get_timestamp()
     end_date: str = ""
     load_matchs: bool = False
+    matchs: List[Match] = dataclasses.field(default_factory=list)
 
     def __post_init__(self):
         if self.load_matchs:
@@ -31,7 +32,7 @@ class Round:
         """Method creating matchs"""
         matchs = []
         for i, pair in enumerate(self.players_pair):
-            matchs.append(Match(name=f"Match {i}", players_pair=pair))
+            matchs.append(Match(name=f"Match {i}", player1=pair[0], player2=pair[1]))
         return matchs
 
     def play_round(self):

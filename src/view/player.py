@@ -21,11 +21,11 @@ class CreatePlayer(BaseView):
         print(f"Le joueur {first_name} {last_name} a bien été créé")
 
         return {
-            "last_name": last_name,
             "first_name": first_name,
+            "last_name": last_name,
             "birth_date": birth_date,
-            "total_score": 0,
             "ranking": ranking,
+            "total_score": 0,
         }
 
 

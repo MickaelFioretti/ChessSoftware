@@ -13,6 +13,20 @@
             "birth_date": "24/07/2000",
             "total_score": 0,
             "ranking": 0
+        },
+        {
+            "first_name": "Julien",
+            "last_name": "Levieux",
+            "birth_date": "01/01/1990",
+            "ranking": 0,
+            "total_score": 0
+        },
+        {
+            "first_name": "Maxime",
+            "last_name": "Saudubray",
+            "birth_date": "01/01/1990",
+            "ranking": 0,
+            "total_score": 0
         }
     ],
     "tournaments": [
@@ -44,6 +58,53 @@
                 }
             ],
             "description": "Test"
+        },
+        {
+            "name": "Test2",
+            "location": "TesTest",
+            "date_debut": "01/01/2000",
+            "date_fin": "02/02/2000",
+            "nb_rounds": 8,
+            "rounds": [],
+            "players": [
+                {
+                    "first_name": "titi",
+                    "last_name": "toto",
+                    "birth_date": "24/07/2000",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0,
+                    "played_with": []
+                },
+                {
+                    "first_name": "Mickael",
+                    "last_name": "Fioretti",
+                    "birth_date": "24/07/2000",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0,
+                    "played_with": []
+                },
+                {
+                    "first_name": "Julien",
+                    "last_name": "Levieux",
+                    "birth_date": "01/01/1990",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0,
+                    "played_with": []
+                },
+                {
+                    "first_name": "Maxime",
+                    "last_name": "Saudubray",
+                    "birth_date": "01/01/1990",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0,
+                    "played_with": []
+                }
+            ],
+            "description": "TestTest"
         }
     ]
 }

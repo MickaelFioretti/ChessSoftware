@@ -21,10 +21,6 @@ class Tournament:
     players: List = dataclasses.field(default_factory=list)
     description: str = ""
 
-    def add_player(self, player):
-        """Method adding a player to the tournament"""
-        self.players.append(player)
-
     def create_round(self, round_number):
         """Method creating a round"""
         player_pairs = self.create_players_pairs(current_round=round_number)
