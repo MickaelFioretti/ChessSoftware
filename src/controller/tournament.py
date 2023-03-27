@@ -11,7 +11,7 @@ from view.player import LoadPlayer
 
 # --- Controllers ---
 from controller.player import create_player, update_ranking
-from controller.database import save_data, load_player, load_tournament
+from controller.database import save_data, load_player, load_tournament, update_data
 
 
 def create_tournament():
@@ -139,10 +139,15 @@ def play_tournament(tournament, new_tournament_loaded=False):
                 elif user_input == "4":
                     rankings = tournament.get_ranking()
                     for i, player in enumerate(rankings):
-                        for player2 in enumerate(tournament.players):
-                            if player.name == player2.name:
-                                player2.ranking = i + 1
+                        for t_player in tournament.players:
+                            if player.name == t_player.name:
+                                t_player.ranking = str(i + 1)
                     # TODO : save tournament in database
+                    update_data(
+                        "tournaments",
+                        tournament.name,
+                        tournament.get_serializeed_tournament(),
+                    )
 
                 # Charger un tournoi
                 elif user_input == "5":

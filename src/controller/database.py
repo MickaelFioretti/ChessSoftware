@@ -26,6 +26,21 @@ def save_data(key, data):
 
 
 # --------- update data ---------
+def update_data(data_type: str, identifier: str, new_data: dict):
+    with open(f"{path_json}db.json", "r") as json_file:
+        data_db = json.load(json_file)
+
+    # --- update data ---
+    for data in data_db[data_type]:
+        if data["name"] == identifier:
+            for key, value in new_data.items():
+                data[key] = value
+
+    # --- save data ---
+    with open(f"{path_json}db.json", "w") as json_file:
+        json.dump(
+            data_db, json_file, default=lambda o: o.get_serialized_player(), indent=4
+        )
 
 
 # --------- load data ---------

@@ -94,15 +94,9 @@ class Tournament:
             "date_debut": self.date_debut,
             "date_fin": self.date_fin,
             "nb_rounds": self.nb_rounds,
-            "rounds": [],
-            "players": [],
+            "rounds": [round.get_serialized_round() for round in self.rounds],
+            "players": [player.get_serialized_player() for player in self.players],
             "description": self.description,
         }
-
-        for player in self.players:
-            serialized_tournament["players"].append(player.get_serialized_player())
-
-        for round in self.rounds:
-            serialized_tournament["rounds"].append(round.get_serialized_round())
 
         return serialized_tournament
