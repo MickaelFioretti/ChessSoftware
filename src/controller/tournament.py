@@ -71,7 +71,7 @@ def create_tournament():
 
 def play_tournament(tournament, new_tournament_loaded=False):
     menu = BaseView()
-    print()
+    os.system("clear")
     print(f"Début du tournoi {tournament.name} le {tournament.date_debut}")
     print()
 
@@ -121,7 +121,9 @@ def play_tournament(tournament, new_tournament_loaded=False):
                 elif user_input == "2":
                     print(f"Classement du tournoi {tournament.name}")
                     for i, player in enumerate(tournament.get_ranking()):
-                        print(f"{i + 1} - {player.first_name} ({player.ranking})")
+                        print(
+                            f"{i + 1} - {player.first_name}, ({player.tournament_score}) "
+                        )
 
                 # Mettre à jour le classement
                 elif user_input == "3":
@@ -138,8 +140,8 @@ def play_tournament(tournament, new_tournament_loaded=False):
                     rankings = tournament.get_ranking()
                     for i, player in enumerate(rankings):
                         for player2 in enumerate(tournament.players):
-                            if player.name == player2.name:
-                                player2.rank = i + 1
+                            if player.last_name == player2.last_name:
+                                player2.ranking = i + 1
                     # TODO : save tournament in database
 
                 # Charger un tournoi
@@ -162,7 +164,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
     rankings = tournament.get_ranking()
     for i, player in enumerate(rankings):
         for player2 in tournament.players:
-            if player.name == player2.name:
+            if player.last_name == player2.last_name:
                 player2.total_score += player.tournament_score
                 player2.rank = i + 1
     # TODO : update player in database

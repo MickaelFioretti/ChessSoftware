@@ -38,3 +38,5 @@ class Match:
 
         self.player1.tournament_score += self.score_player1
         self.player2.tournament_score += self.score_player2
+
+        return ([self.player1, self.score_player1], [self.player2, self.score_player2])
