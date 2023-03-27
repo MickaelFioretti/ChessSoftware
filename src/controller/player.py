@@ -14,7 +14,7 @@ def create_player():
 
     # Creation du joueur
     player = Player(
-        user_entries["last_name"],
+        user_entries["name"],
         user_entries["first_name"],
         user_entries["birth_date"],
         user_entries["total_score"],
@@ -29,4 +29,4 @@ def update_ranking(player, ranking, score=True):
         player.total_score += player.tournament_score
     player.ranking = ranking
     # update_player_ranking("player", player)
-    print(f"Le joueur {player.first_name} {player.last_name} a bien été mis à jour")
+    print(f"Le joueur {player.first_name} {player.name} a bien été mis à jour")

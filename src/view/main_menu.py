@@ -129,7 +129,7 @@ class MainMenu(BaseView):
         self.clear_shell()
         print(f"Tournoir {tournament.name} terminé !\n Résultats:")
         for i, player in enumerate(rankings):
-            print(f"{str(i + 1)} - {player.last_name} {player.first_name}")
+            print(f"{str(i + 1)} - {player.name} {player.first_name}")
 
         # --- on met a jour les classements ---
         self.clear_shell()
@@ -144,14 +144,14 @@ class MainMenu(BaseView):
         )
         if user_input == "1":
             for i, player in enumerate(rankings):
-                print(player.last_name)
+                print(player.name)
                 update_ranking(player, i + 1)
 
         elif user_input == "2":
             for player in rankings:
                 self.clear_shell()
                 rank = self.get_user_input(
-                    msg_display=f"Classement de {player.last_name}:\n",
+                    msg_display=f"Classement de {player.name}:\n",
                     msg_error="Veuillez entrer un nombre valide",
                     value_type="numeric",
                 )

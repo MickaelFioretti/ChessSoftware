@@ -140,7 +140,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
                     rankings = tournament.get_ranking()
                     for i, player in enumerate(rankings):
                         for player2 in enumerate(tournament.players):
-                            if player.last_name == player2.last_name:
+                            if player.name == player2.name:
                                 player2.ranking = i + 1
                     # TODO : save tournament in database
 
@@ -164,7 +164,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
     rankings = tournament.get_ranking()
     for i, player in enumerate(rankings):
         for player2 in tournament.players:
-            if player.last_name == player2.last_name:
+            if player.name == player2.name:
                 player2.total_score += player.tournament_score
                 player2.rank = i + 1
     # TODO : update player in database

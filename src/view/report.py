@@ -39,7 +39,7 @@ class Report(BaseView):
                 while True:
                     self.clear_shell()
                     print(
-                        f"Détails du joueur: {selected_player['first_name']} {selected_player['last_name']} \n"
+                        f"Détails du joueur: {selected_player['first_name']} {selected_player['name']} \n"
                     )
                     print(
                         f"Rank: {selected_player['ranking']} \n"
@@ -201,9 +201,9 @@ class Report(BaseView):
                                 self.clear_shell()
                                 print(
                                     f"Détails du match: {selected_match['name']} \n"
-                                    f"Joueur 1: {selected_match['player_1']['last_name']}"
+                                    f"Joueur 1: {selected_match['player_1']['name']}"
                                     + f"{selected_match['player_1']['first_name']} \n"
-                                    f"Joueur 2: {selected_match['player_2']['last_name']}"
+                                    f"Joueur 2: {selected_match['player_2']['name']}"
                                     + "{selected_match['player_2']['first_name']} \n"
                                     f"Gagnant: {selected_match['winner']} \n"
                                 )
@@ -223,6 +223,6 @@ class Report(BaseView):
         if by_rank:
             sorted_players = sorted(players["players"], key=itemgetter("ranking"))
         else:
-            sorted_players = sorted(players["players"], key=itemgetter("last_name"))
+            sorted_players = sorted(players["players"], key=itemgetter("name"))
 
         return sorted_players

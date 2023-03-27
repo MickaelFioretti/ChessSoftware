@@ -26,11 +26,11 @@ class Match:
             case 1:
                 self.score_player1 = 1
                 self.score_player2 = 0
-                self.winner = self.player1.first_name
+                self.winner = self.player1.name
             case 2:
                 self.score_player1 = 0
                 self.score_player2 = 1
-                self.winner = self.player2.first_name
+                self.winner = self.player2.name
             case 3:
                 self.score_player1 = 0.5
                 self.score_player2 = 0.5

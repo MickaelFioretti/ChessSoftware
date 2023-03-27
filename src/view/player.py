@@ -5,7 +5,7 @@ from controller.database import load_data
 class CreatePlayer(BaseView):
     def display_menu(self):
         self.clear_shell()
-        last_name = input("Entrez le nom du joueur: ")
+        name = input("Entrez le nom du joueur: ")
         first_name = input("Entrez le prénom du joueur: ")
         birth_date = self.get_user_input(
             msg_display="Entrez la date de naissance du joueur (jj/mm/aaaa): ",
@@ -18,11 +18,11 @@ class CreatePlayer(BaseView):
             value_type="numeric",
         )
 
-        print(f"Le joueur {first_name} {last_name} a bien été créé")
+        print(f"Le joueur {first_name} {name} a bien été créé")
 
         return {
             "first_name": first_name,
-            "last_name": last_name,
+            "name": name,
             "birth_date": birth_date,
             "ranking": ranking,
             "total_score": 0,
@@ -39,9 +39,7 @@ class LoadPlayer(BaseView):
 
             assertions = []
             for i, player in enumerate(all_players):
-                display_msg += (
-                    f"{i + 1} - {player['last_name']} {player['first_name']}\n"
-                )
+                display_msg += f"{i + 1} - {player['name']} {player['first_name']}\n"
                 assertions.append(str(i + 1))
 
             user_input = int(

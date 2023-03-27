@@ -9,7 +9,7 @@ class Player:
     """Classe représentant un joueur d'échecs"""
 
     first_name: str
-    last_name: str
+    name: str
     birth_date: str
     ranking: int = 0
     total_score: int = 0
@@ -20,7 +20,7 @@ class Player:
         """Méthode retournant le joueur sérialisé"""
         serialized_player = {
             "first_name": self.first_name,
-            "last_name": self.last_name,
+            "name": self.name,
             "birth_date": self.birth_date,
             "ranking": self.ranking,
             "total_score": self.total_score,

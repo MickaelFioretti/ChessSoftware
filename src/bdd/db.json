@@ -1,14 +1,14 @@
 {
     "players": [
         {
-            "last_name": "toto",
+            "name": "toto",
             "first_name": "titi",
             "birth_date": "24/07/2000",
             "total_score": 0,
             "ranking": 0
         },
         {
-            "last_name": "Fioretti",
+            "name": "Fioretti",
             "first_name": "Mickael",
             "birth_date": "24/07/2000",
             "total_score": 0,
@@ -16,14 +16,14 @@
         },
         {
             "first_name": "Julien",
-            "last_name": "Levieux",
+            "name": "Levieux",
             "birth_date": "01/01/1990",
             "ranking": 0,
             "total_score": 0
         },
         {
             "first_name": "Maxime",
-            "last_name": "Saudubray",
+            "name": "Saudubray",
             "birth_date": "01/01/1990",
             "ranking": 0,
             "total_score": 0
@@ -40,7 +40,7 @@
             "players": [
                 {
                     "first_name": "titi",
-                    "last_name": "toto",
+                    "name": "toto",
                     "birth_date": "24/07/2000",
                     "ranking": 0,
                     "total_score": 0,
@@ -49,7 +49,7 @@
                 },
                 {
                     "first_name": "Mickael",
-                    "last_name": "Fioretti",
+                    "name": "Fioretti",
                     "birth_date": "24/07/2000",
                     "ranking": 0,
                     "total_score": 0,
@@ -69,7 +69,7 @@
             "players": [
                 {
                     "first_name": "titi",
-                    "last_name": "toto",
+                    "name": "toto",
                     "birth_date": "24/07/2000",
                     "ranking": 0,
                     "total_score": 0,
@@ -78,7 +78,7 @@
                 },
                 {
                     "first_name": "Mickael",
-                    "last_name": "Fioretti",
+                    "name": "Fioretti",
                     "birth_date": "24/07/2000",
                     "ranking": 0,
                     "total_score": 0,
@@ -87,7 +87,7 @@
                 },
                 {
                     "first_name": "Julien",
-                    "last_name": "Levieux",
+                    "name": "Levieux",
                     "birth_date": "01/01/1990",
                     "ranking": 0,
                     "total_score": 0,
@@ -96,7 +96,7 @@
                 },
                 {
                     "first_name": "Maxime",
-                    "last_name": "Saudubray",
+                    "name": "Saudubray",
                     "birth_date": "01/01/1990",
                     "ranking": 0,
                     "total_score": 0,

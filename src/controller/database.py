@@ -38,7 +38,7 @@ def load_data():
 def load_player(serialized_player, load_tournament_score=False):
     player = Player(
         serialized_player["first_name"],
-        serialized_player["last_name"],
+        serialized_player["name"],
         serialized_player["birth_date"],
         serialized_player["total_score"],
         serialized_player["ranking"],
@@ -77,9 +77,9 @@ def load_rounds(serialized_tournament, tournament):
         players_pair = []
         for pair in round["players_pair"]:
             for player in tournament.players:
-                if player.first_name == pair[0]["first_name"]:
+                if player.name == pair[0]["name"]:
                     player1 = player
-                if player.first_name == pair[1]["first_name"]:
+                if player.name == pair[1]["name"]:
                     player2 = player
             players_pair.append([player1, player2])
         loaded_round = Round(round["name"], players_pair, load_match=True)
@@ -95,9 +95,9 @@ def load_rounds(serialized_tournament, tournament):
 
 def load_match(serialized_match, tournament):
     for player in tournament.players:
-        if player.first_name == serialized_match["player1"]["first_name"]:
+        if player.name == serialized_match["player1"]["name"]:
             player1 = player
-        elif player.first_name == serialized_match["player2"]["first_name"]:
+        elif player.name == serialized_match["player2"]["name"]:
             player2 = player
 
     loaded_match = Match(
