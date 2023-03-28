@@ -42,7 +42,7 @@ class Round:
         for match in self.matchs:
             match.play_match()
 
-    def get_serialized_round(self):
+    def get_serialized(self):
         """Method returning serialized round"""
         serialized_round = {
             "name": self.name,

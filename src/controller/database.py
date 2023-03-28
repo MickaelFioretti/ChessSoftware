@@ -38,15 +38,19 @@ def update_data(data_type: str, identifier: str, new_data: dict):
 
     # --- save data ---
     with open(f"{path_json}db.json", "w") as json_file:
-        json.dump(
-            data_db, json_file, default=lambda o: o.get_serialized_player(), indent=4
-        )
+        json.dump(data_db, json_file, default=lambda o: o.get_serialized(), indent=4)
 
 
 # --------- load data ---------
 def load_data():
-    with open(f"{path_json}db.json", "r") as json_file:
-        data = json.load(json_file)
+    try:
+        with open(f"{path_json}db.json", "r") as json_file:
+            if json_file.read().strip() == "":
+                return {}
+            json_file.seek(0)
+            data = json.load(json_file)
+    except FileNotFoundError:
+        data = {}
     return data
 
 
@@ -109,14 +113,21 @@ def load_rounds(serialized_tournament, tournament):
 
 
 def load_match(serialized_match, tournament):
+    player1 = None
+    player2 = None
+
     for player in tournament.players:
+        print("Top of the IF : ", player.name)
         if player.name == serialized_match["player1"]["name"]:
+            print(player.name, " ===J1=== ", serialized_match["player1"]["name"])
             player1 = player
         elif player.name == serialized_match["player2"]["name"]:
+            print(player.name, " ===J2=== ", serialized_match["player2"]["name"])
             player2 = player
 
     loaded_match = Match(
-        players_pair=[player1, player2],
+        player1=player1,
+        player2=player2,
         name=serialized_match["name"],
     )
     loaded_match.score_player1 = serialized_match["score_player1"]

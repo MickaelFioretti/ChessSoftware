@@ -64,7 +64,7 @@ def create_tournament():
     )
 
     # --- Sauvegarde du tournoi ---
-    save_data("tournaments", tournament.get_serializeed_tournament())
+    save_data("tournaments", tournament.get_serialized())
 
     return tournament
 
@@ -146,7 +146,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
                     update_data(
                         "tournaments",
                         tournament.name,
-                        tournament.get_serializeed_tournament(),
+                        tournament.get_serialized(),
                     )
 
                 # Charger un tournoi

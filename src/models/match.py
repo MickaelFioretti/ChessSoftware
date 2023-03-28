@@ -40,3 +40,15 @@ class Match:
         self.player2.tournament_score += self.score_player2
 
         return ([self.player1, self.score_player1], [self.player2, self.score_player2])
+
+    def get_serialized(self):
+        """Method returning the serialized match"""
+        serialized_match = {
+            "player1": self.player1.get_serialized(),
+            "score_player1": self.score_player1,
+            "player2": self.player2.get_serialized(),
+            "score_player2": self.score_player2,
+            "winner": self.winner,
+            "name": self.name,
+        }
+        return serialized_match

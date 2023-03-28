@@ -86,7 +86,7 @@ class Tournament:
         else:
             return sorted(self.players, key=lambda x: x.ranking, reverse=True)
 
-    def get_serializeed_tournament(self):
+    def get_serialized(self):
         """Method returning the serialized tournament"""
         serialized_tournament = {
             "name": self.name,
@@ -94,8 +94,8 @@ class Tournament:
             "date_debut": self.date_debut,
             "date_fin": self.date_fin,
             "nb_rounds": self.nb_rounds,
-            "rounds": [round.get_serialized_round() for round in self.rounds],
-            "players": [player.get_serialized_player() for player in self.players],
+            "rounds": [round.get_serialized() for round in self.rounds],
+            "players": [player.get_serialized() for player in self.players],
             "description": self.description,
         }
 
