@@ -41,7 +41,9 @@ class MainMenu(BaseView):
                     tournament = load_tournament(serialized_tournament)
                     break
                 else:
+                    self.clear_shell()
                     print("Aucun tournoi trouvé")
+                    input("Appuyez sur entrée pour continuer\n")
                     continue
 
             # --- on cree des joueurs ---
