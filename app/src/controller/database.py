@@ -7,7 +7,7 @@ from models.tournament import Tournament
 from models.match import Match
 from models.round import Round
 
-path_json = "/workspaces/ChessSoftware/src/bdd/"
+path_json = "/home/user/app/src/bdd/"
 
 
 # --------- save data ---------

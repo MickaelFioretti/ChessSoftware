@@ -1,0 +1,19 @@
+{
+    "players": [
+        {
+            "first_name": "Toto",
+            "name": "Titi",
+            "birth_date": "20/03/2023",
+            "ranking": 0,
+            "total_score": 0
+        },
+        {
+            "first_name": "Fioretti",
+            "name": "Mickael",
+            "birth_date": "20/03/2023",
+            "ranking": 0,
+            "total_score": 0
+        }
+    ],
+    "tournaments": []
+}
