@@ -9,7 +9,7 @@ This is a chess software that allows users to manage tournaments and players.
 1.  Clone the repository:
 
 ```bash
-git clone https://github.com/username/chesssoftware.git
+git clone https://github.com/MickaelFioretti/ChessSoftware.git
 ```
 
 2.  Create a virtual environment and activate it:
@@ -39,7 +39,7 @@ python app/src/main.py
 1.  Clone the repository:
 
 ```bash
-git clone https://github.com/username/chesssoftware.git
+git clone https://github.com/MickaelFioretti/ChessSoftware.git
 ```
 
 2.  Build the Docker image:
