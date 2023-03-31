@@ -1,5 +1,6 @@
 # --- imports ---
 import json
+from time import sleep
 
 # --- models ---
 from models.player import Player
@@ -43,14 +44,8 @@ def update_data(data_type: str, identifier: str, new_data: dict):
 
 # --------- load data ---------
 def load_data():
-    try:
-        with open(f"{path_json}db.json", "r") as json_file:
-            if json_file.read().strip() == "":
-                return {}
-            json_file.seek(0)
-            data = json.load(json_file)
-    except FileNotFoundError:
-        data = {}
+    with open(f"{path_json}db.json", "r") as json_file:
+        data = json.load(json_file)
     return data
 
 

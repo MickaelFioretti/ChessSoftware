@@ -13,6 +13,13 @@
             "birth_date": "20/03/2023",
             "ranking": 0,
             "total_score": 0
+        },
+        {
+            "first_name": "Julien",
+            "name": "Levieux",
+            "birth_date": "20/02/2020",
+            "ranking": 0,
+            "total_score": 0
         }
     ],
     "tournaments": []

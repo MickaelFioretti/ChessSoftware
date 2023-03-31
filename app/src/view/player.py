@@ -5,13 +5,17 @@ from controller.database import load_data
 class CreatePlayer(BaseView):
     def display_menu(self):
         self.clear_shell()
+
         name = input("Entrez le nom du joueur: ")
+
         first_name = input("Entrez le prénom du joueur: ")
+
         birth_date = self.get_user_input(
             msg_display="Entrez la date de naissance du joueur (jj/mm/aaaa): ",
             msg_error="Veuillez entrer une date valide",
             value_type="date",
         )
+        
         ranking = self.get_user_input(
             msg_display="Entrez le classement du joueur (0 a 1000): ",
             msg_error="Veuillez entrer un classement valide",

@@ -57,7 +57,7 @@ docker-compose up -d
 4.  Access the Docker container:
 
 ```bash
-docker exec -it chesssoftware_app_1 /bin/bash
+docker exec -it 'container_id' bash
 ```
 
 5.  Run the application:
