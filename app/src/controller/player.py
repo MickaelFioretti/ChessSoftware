@@ -1,5 +1,8 @@
 # --- imports ---
 
+# --- controllers ---
+from controller.database import update_data
+
 # --- models ---
 from models.player import Player
 
@@ -28,5 +31,5 @@ def update_ranking(player, ranking, score=True):
     if score:
         player.total_score += player.tournament_score
     player.ranking = ranking
-    # update_player_ranking("player", player)
+    update_data("players", player.name, player.get_serialized())
     print(f"Le joueur {player.first_name} {player.name} a bien été mis à jour")

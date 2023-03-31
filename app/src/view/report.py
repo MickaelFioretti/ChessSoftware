@@ -60,6 +60,12 @@ class Report(BaseView):
                         break
 
     def display_tournament_report(self):
+        if self.tournament_list:
+            self.clear_shell()
+            print("Aucun tournoi trouvé")
+            input("Appuyez sur entrée pour continuer\n")
+            return
+        
         builded_selection = self.build_selection(
             iterable=self.tournament_list,
             display_msg="Voir les details d'un tournoi: \n",

@@ -1,8 +1,8 @@
 {
     "players": [
         {
-            "first_name": "Toto",
-            "name": "Titi",
+            "first_name": "Jean",
+            "name": "Dupont",
             "birth_date": "20/03/2023",
             "ranking": 0,
             "total_score": 0
@@ -20,7 +20,58 @@
             "birth_date": "20/02/2020",
             "ranking": 0,
             "total_score": 0
+        },
+        {
+            "first_name": "Tony",
+            "name": "Stark",
+            "birth_date": "20/02/2020",
+            "ranking": 0,
+            "total_score": 0
         }
     ],
-    "tournaments": []
+    "tournaments": [
+        {
+            "name": "Test",
+            "location": "Test",
+            "date_debut": "20/02/2020",
+            "date_fin": "30/02/2020",
+            "nb_rounds": 4,
+            "rounds": [],
+            "players": [
+                {
+                    "first_name": "Jean",
+                    "name": "Dupont",
+                    "birth_date": "20/03/2023",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0
+                },
+                {
+                    "first_name": "Fioretti",
+                    "name": "Mickael",
+                    "birth_date": "20/03/2023",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0
+                },
+                {
+                    "first_name": "Julien",
+                    "name": "Levieux",
+                    "birth_date": "20/02/2020",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0
+                },
+                {
+                    "first_name": "Tony",
+                    "name": "Stark",
+                    "birth_date": "20/02/2020",
+                    "ranking": 0,
+                    "total_score": 0,
+                    "tournament_score": 0
+                }
+            ],
+            "description": "Test"
+        }
+    ]
 }

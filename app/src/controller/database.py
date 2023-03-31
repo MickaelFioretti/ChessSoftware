@@ -41,7 +41,6 @@ def update_data(data_type: str, identifier: str, new_data: dict):
     with open(f"{path_json}db.json", "w") as json_file:
         json.dump(data_db, json_file, default=lambda o: o.get_serialized(), indent=4)
 
-
 # --------- load data ---------
 def load_data():
     with open(f"{path_json}db.json", "r") as json_file:
@@ -112,7 +111,6 @@ def load_match(serialized_match, tournament):
     player2 = None
 
     for player in tournament.players:
-        print("Top of the IF : ", player.name)
         if player.name == serialized_match["player1"]["name"]:
             print(player.name, " ===J1=== ", serialized_match["player1"]["name"])
             player1 = player

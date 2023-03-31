@@ -115,6 +115,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
                 # Round suivant
                 if user_input == "1":
                     current_round.play_round()
+                    
                     break
 
                 # Voir le classement
@@ -142,7 +143,6 @@ def play_tournament(tournament, new_tournament_loaded=False):
                         for t_player in tournament.players:
                             if player.name == t_player.name:
                                 t_player.ranking = str(i + 1)
-                    # TODO : save tournament in database
                     update_data(
                         "tournaments",
                         tournament.name,
@@ -172,5 +172,5 @@ def play_tournament(tournament, new_tournament_loaded=False):
             if player.name == player2.name:
                 player2.total_score += player.tournament_score
                 player2.rank = i + 1
-    # TODO : update player in database
+    update_data("tournaments", tournament.name, tournament.get_serialized())
     return rankings

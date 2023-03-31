@@ -49,6 +49,7 @@ class BaseView(ABC):
                     if value in assertions:
                         return value
                     else:
+                        self.clear_shell()
                         print(msg_error)
                         continue
 

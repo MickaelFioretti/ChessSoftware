@@ -105,9 +105,11 @@ class MainMenu(BaseView):
                                 )
 
                     elif user_input == "2":
+                        Report().display_tournament_report()
                         pass
 
             else:
+                self.clear_shell()
                 quit()
 
         # on joue le tournoi
@@ -125,6 +127,7 @@ class MainMenu(BaseView):
         if user_input == "1":
             rankings = play_tournament(tournament, new_tournament_loaded=True)
         else:
+            self.clear_shell()
             quit()
 
         # --- on affiche le classement ---
@@ -160,4 +163,5 @@ class MainMenu(BaseView):
                 update_ranking(player, rank)
 
         else:
+            self.clear_shell()
             quit()
