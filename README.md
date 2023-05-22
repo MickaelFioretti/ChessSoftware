@@ -75,3 +75,6 @@ To launch the main program, execute the command in the terminal.
 ```bash
 python app/src/main.py
 ```
+
+install sudo apt install python3-pytest
+pytest-3
