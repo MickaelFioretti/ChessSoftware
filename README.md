@@ -76,5 +76,16 @@ To launch the main program, execute the command in the terminal.
 python app/src/main.py
 ```
 
+### Test
+
+For run test you can install 
+
+```bash
 install sudo apt install python3-pytest
+```
+
+And run this command
+
+```bash
 pytest-3
+```

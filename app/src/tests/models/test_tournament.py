@@ -42,7 +42,7 @@ def tournament():
                 ranking=2,
                 played_with=[],
             ),
-        ]
+        ],
     )
 
     return tournament
@@ -65,11 +65,11 @@ def test_create_players_pairs(tournament):
     assert pairs[0][0] != pairs[1][1]
     assert pairs[0][1] != pairs[1][0]
     assert pairs[0][1] != pairs[1][1]
-    
+
     # Test que les paires sont bien créées en fonction du classement
     assert pairs[0][0].ranking < pairs[0][1].ranking
     assert pairs[1][0].ranking < pairs[1][1].ranking
-    
+
     # Test que le played_with est bien mis à jour
     assert pairs[0][0].played_with == [f"{pairs[0][1].first_name} {pairs[0][1].name}"]
     assert pairs[0][1].played_with == [f"{pairs[0][0].first_name} {pairs[0][0].name}"]
