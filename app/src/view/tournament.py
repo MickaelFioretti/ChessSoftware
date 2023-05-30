@@ -67,19 +67,20 @@ class LoadTournament(BaseView):
             builded_selection = self.build_selection(
                 iterable=all_tournaments,
                 display_msg="Choisir un tournoi: \n",
-                assertions=[],
+                assertions=["r"],
             )
 
-            user_input = int(
-                self.get_user_input(
-                    msg_display=builded_selection["msg"] + "\n",
+            user_input = self.get_user_input(
+                    msg_display=builded_selection["msg"] + "\nr - Retour\n",
                     msg_error="Veuillez entrer un nombre entier",
                     value_type="selection",
                     assertions=builded_selection["assertions"],
                 )
-            )
 
-            serialized_loaded_tournament = all_tournaments[user_input - 1]
+            if user_input == "r":
+                return False
+
+            serialized_loaded_tournament = all_tournaments[int(user_input) - 1]
 
             return serialized_loaded_tournament
 
