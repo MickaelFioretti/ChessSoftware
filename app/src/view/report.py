@@ -66,7 +66,6 @@ class Report(BaseView):
             input("\nAppuyez sur entrée pour continuer\n")
             return
         
-        print("ICI", self.tournament_list)
         builded_selection = self.build_selection(
             iterable=self.tournament_list,
             display_msg="Voir les details d'un tournoi: \n",
@@ -75,7 +74,6 @@ class Report(BaseView):
 
         while True:
             self.clear_shell()
-            print("Liste des tournois: \n")
 
             # --- on affiche la liste des tournois ---
             user_input = self.get_user_input(
@@ -95,17 +93,19 @@ class Report(BaseView):
                     self.clear_shell()
                     print(
                         f"Détails du tournoi: {selected_tournament['name']} \n"
-                        f"Lieu: {selected_tournament['location']} \n"
-                        f"Date de début: {selected_tournament['date_debut']} \n"
-                        f"Date de fin: {selected_tournament['date_fin']} \n"
-                        f"Nombre de tours: {selected_tournament['nb_rounds']} \n"
-                        f"Description: {selected_tournament['description']} \n"
+                        f"  Lieu: {selected_tournament['location']} \n"
+                        f"  Date de début: {selected_tournament['date_debut']} \n"
+                        f"  Date de fin: {selected_tournament['date_fin']} \n"
+                        f"  Nombre de tours: {selected_tournament['nb_rounds']} \n"
+                        f"  Description: {selected_tournament['description']} \n"
                     )
 
                     user_input = self.get_user_input(
-                        msg_display="1 - Voir les joueurs\n"
-                        "2 - Voir les tours\n"
-                        "\nr - Retour\n",
+                        msg_display=
+                            "Que voulez-vous faire ?\n"
+                            "1 - Voir les joueurs\n"
+                            "2 - Voir les tours\n"
+                            "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["1", "2", "r"],
@@ -116,6 +116,7 @@ class Report(BaseView):
 
                     elif user_input == "1":
                         while True:
+                            self.clear_shell()
                             user_input = self.get_user_input(
                                 msg_display="Type de classement: \n"
                                 "1 - Par rang\n"
