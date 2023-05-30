@@ -146,14 +146,12 @@ class Report(BaseView):
     def display_round(self, rounds: list):
         builded_selection = self.build_selection(
             iterable=rounds,
-            display_msg="Voir les details d'un tour: \n",
+            display_msg="Voir les details d'un round: \n",
             assertions=["r"],
         )
 
         while True:
             self.clear_shell()
-            print("Liste des tours: \n")
-
             # --- on affiche la liste des tournois ---
             user_input = self.get_user_input(
                 msg_display=builded_selection["msg"] + "\nr - Retour\n",
@@ -171,10 +169,10 @@ class Report(BaseView):
                 while True:
                     self.clear_shell()
                     print(
-                        f"Détails du tour: {selected_round['name']} \n"
+                        f"Détails du round: {selected_round['name']} \n"
                         f"Date de début: {selected_round['start_date']} \n"
                         f"Date de fin: {selected_round['end_date']} \n"
-                        f"Nombre de matchs: {selected_round['nb_matchs']} \n"
+                        f"Nombre de matchs: {len(selected_round['matchs'])} \n"
                     )
 
                     user_input = self.get_user_input(
@@ -188,11 +186,13 @@ class Report(BaseView):
                         break
 
                     elif user_input == "1":
+                        self.clear_shell()
                         builded_selection = self.build_selection(
                             iterable=selected_round["matchs"],
                             display_msg="Voir les details d'un match: \n",
                             assertions=["r"],
                         )
+                        print("ici 1")
                         print("Liste des matchs: \n")
                         user_input = self.get_user_input(
                             msg_display=builded_selection["msg"] + "\nr - Retour\n",
@@ -200,9 +200,11 @@ class Report(BaseView):
                             value_type="selection",
                             assertions=builded_selection["assertions"],
                         )
+                        print("ici 2")
 
                         if user_input == "r":
                             break
+
                         else:
                             selected_match = selected_round["matchs"][
                                 int(user_input) - 1
@@ -210,14 +212,14 @@ class Report(BaseView):
                             while True:
                                 self.clear_shell()
                                 print(
-                                    f"Détails du match: {selected_match['name']} \n"
-                                    f"Joueur 1: {selected_match['player_1']['name']}"
-                                    + f"{selected_match['player_1']['first_name']} \n"
-                                    f"Joueur 2: {selected_match['player_2']['name']}"
-                                    + "{selected_match['player_2']['first_name']} \n"
+                                    f"Détails du match: {selected_match['name']} \n\n"
+                                    f"Joueur 1: {selected_match['player1']['name']} "
+                                    + f"{selected_match['player1']['first_name']} \n"
+                                    f"Joueur 2: {selected_match['player2']['name']} "
+                                    + f"{selected_match['player2']['first_name']} \n"
                                     f"Gagnant: {selected_match['winner']} \n"
                                 )
-
+                                print("ici 3")
                                 user_input = self.get_user_input(
                                     msg_display="\nr - Retour\n",
                                     msg_error="Veuillez entrer une option valide",
