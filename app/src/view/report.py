@@ -10,7 +10,7 @@ class Report(BaseView):
     
     def __init__(self):
         self.player_list = load_data()
-        self.tournament_list = load_data()
+        self.tournament_list = load_data()["tournaments"]
 
     def display_player_report(self, player_list=[]):
         player_list = player_list
@@ -26,7 +26,7 @@ class Report(BaseView):
             print("Classement des joueurs: \n")
 
             user_input = self.get_user_input(
-                msg_display=builded_selection["msg"] + "r - Retour\n",
+                msg_display=builded_selection["msg"] + "\nr - Retour\n",
                 msg_error="Veuillez entrer une option valide",
                 value_type="selection",
                 assertions=builded_selection["assertions"],
@@ -50,7 +50,7 @@ class Report(BaseView):
                     )
 
                     user_input = self.get_user_input(
-                        msg_display="r - Retour\n",
+                        msg_display="\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["r"],
@@ -60,12 +60,13 @@ class Report(BaseView):
                         break
 
     def display_tournament_report(self):
-        if self.tournament_list:
+        if self.tournament_list is None:
             self.clear_shell()
             print("Aucun tournoi trouvé")
-            input("Appuyez sur entrée pour continuer\n")
+            input("\nAppuyez sur entrée pour continuer\n")
             return
         
+        print("ICI", self.tournament_list)
         builded_selection = self.build_selection(
             iterable=self.tournament_list,
             display_msg="Voir les details d'un tournoi: \n",
@@ -78,7 +79,7 @@ class Report(BaseView):
 
             # --- on affiche la liste des tournois ---
             user_input = self.get_user_input(
-                msg_display=builded_selection["msg"] + "r - Retour\n",
+                msg_display=builded_selection["msg"] + "\nr - Retour\n",
                 msg_error="Veuillez entrer une option valide",
                 value_type="selection",
                 assertions=builded_selection["assertions"],
@@ -104,7 +105,7 @@ class Report(BaseView):
                     user_input = self.get_user_input(
                         msg_display="1 - Voir les joueurs\n"
                         "2 - Voir les tours\n"
-                        "r - Retour\n",
+                        "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["1", "2", "r"],
@@ -119,7 +120,7 @@ class Report(BaseView):
                                 msg_display="Type de classement: \n"
                                 "1 - Par rang\n"
                                 "2 - Par ordre alphabétique\n"
-                                "r - Retour\n",
+                                "\nr - Retour\n",
                                 msg_error="Veuillez entrer une option valide",
                                 value_type="selection",
                                 assertions=["1", "2", "r"],
@@ -154,7 +155,7 @@ class Report(BaseView):
 
             # --- on affiche la liste des tournois ---
             user_input = self.get_user_input(
-                msg_display=builded_selection["msg"] + "r - Retour\n",
+                msg_display=builded_selection["msg"] + "\nr - Retour\n",
                 msg_error="Veuillez entrer une option valide",
                 value_type="selection",
                 assertions=builded_selection["assertions"],
@@ -176,7 +177,7 @@ class Report(BaseView):
                     )
 
                     user_input = self.get_user_input(
-                        msg_display="1 - Voir les matchs\n" "r - Retour\n",
+                        msg_display="1 - Voir les matchs\n" "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["1", "r"],
@@ -193,7 +194,7 @@ class Report(BaseView):
                         )
                         print("Liste des matchs: \n")
                         user_input = self.get_user_input(
-                            msg_display=builded_selection["msg"] + "r - Retour\n",
+                            msg_display=builded_selection["msg"] + "\nr - Retour\n",
                             msg_error="Veuillez entrer une option valide",
                             value_type="selection",
                             assertions=builded_selection["assertions"],
@@ -217,7 +218,7 @@ class Report(BaseView):
                                 )
 
                                 user_input = self.get_user_input(
-                                    msg_display="r - Retour\n",
+                                    msg_display="\nr - Retour\n",
                                     msg_error="Veuillez entrer une option valide",
                                     value_type="selection",
                                     assertions=["r"],

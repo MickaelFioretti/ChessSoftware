@@ -23,7 +23,7 @@ class MainMenu(BaseView):
                 "2 - Charger un tournoi\n"
                 "3 - Créer des joueurs\n"
                 "4 - Voir les rapports\n"
-                "q - Quitter\n",
+                "\nq - Quitter\n",
                 msg_error="Veuillez entrer une option valide",
                 value_type="selection",
                 assertions=["1", "2", "3", "4", "q"],
@@ -66,7 +66,7 @@ class MainMenu(BaseView):
                         msg_display="Choisissez une option: \n"
                         "1 - Rapport des joueurs\n"
                         "2 - Rapport des tournois\n"
-                        "r - Retour\n",
+                        "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["1", "2", "r"],
@@ -80,7 +80,7 @@ class MainMenu(BaseView):
                                 msg_display="Voir le classement par:\n"
                                 "1 - Rang\n"
                                 "2 - Ordre alphabétique\n"
-                                "r - Retour\n",
+                                "\nr - Retour\n",
                                 msg_error="Veuillez entrer une option valide",
                                 value_type="selection",
                                 assertions=["1", "2", "r"],
@@ -117,7 +117,7 @@ class MainMenu(BaseView):
         user_input = self.get_user_input(
             msg_display="Que voulez-vous faire ?\n"
             "1 - Jouer le tournoi\n"
-            "q - Quitter\n",
+            "\nq - Quitter\n",
             msg_error="Veuillez entrer une option valide",
             value_type="selection",
             assertions=["1", "q"],
@@ -142,7 +142,7 @@ class MainMenu(BaseView):
             msg_display="Mise a jour des classements:\n"
             "1 - Automatiquement\n"
             "2 - Manuellement\n"
-            "q - Quitter\n",
+            "\nq - Quitter\n",
             msg_error="Veuillez entrer une option valide",
             value_type="selection",
             assertions=["1", "2", "q"],
