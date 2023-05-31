@@ -104,7 +104,7 @@ class Report(BaseView):
                         msg_display=
                             "Que voulez-vous faire ?\n"
                             "1 - Voir les joueurs\n"
-                            "2 - Voir les tours\n"
+                            "2 - Voir les rounds\n"
                             "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
@@ -144,13 +144,12 @@ class Report(BaseView):
                         self.display_round(selected_tournament["rounds"])
 
     def display_round(self, rounds: list):
-        builded_selection = self.build_selection(
+        while True:
+            builded_selection = self.build_selection(
             iterable=rounds,
             display_msg="Voir les details d'un round: \n",
             assertions=["r"],
-        )
-
-        while True:
+            )
             self.clear_shell()
             # --- on affiche la liste des tournois ---
             user_input = self.get_user_input(
@@ -164,9 +163,8 @@ class Report(BaseView):
                 break
 
             else:
-                selected_round = rounds[int(user_input) - 1]
-
                 while True:
+                    selected_round = rounds[int(user_input) - 1]
                     self.clear_shell()
                     print(
                         f"Détails du round: {selected_round['name']} \n"
@@ -175,59 +173,45 @@ class Report(BaseView):
                         f"Nombre de matchs: {len(selected_round['matchs'])} \n"
                     )
 
+                    builded_selection = self.build_selection(
+                        iterable=selected_round["matchs"],
+                        display_msg="Voir les details d'un match: \n",
+                        assertions=["r"],
+                    )
+
                     user_input = self.get_user_input(
-                        msg_display="1 - Voir les matchs\n" "\nr - Retour\n",
+                        msg_display=builded_selection["msg"] + "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
-                        assertions=["1", "r"],
+                        assertions=builded_selection["assertions"],
                     )
 
                     if user_input == "r":
                         break
 
-                    elif user_input == "1":
-                        self.clear_shell()
-                        builded_selection = self.build_selection(
-                            iterable=selected_round["matchs"],
-                            display_msg="Voir les details d'un match: \n",
-                            assertions=["r"],
-                        )
-                        print("ici 1")
-                        print("Liste des matchs: \n")
-                        user_input = self.get_user_input(
-                            msg_display=builded_selection["msg"] + "\nr - Retour\n",
-                            msg_error="Veuillez entrer une option valide",
-                            value_type="selection",
-                            assertions=builded_selection["assertions"],
-                        )
-                        print("ici 2")
-
-                        if user_input == "r":
-                            break
-
-                        else:
+                    else:
+                        while True:
                             selected_match = selected_round["matchs"][
                                 int(user_input) - 1
                             ]
-                            while True:
-                                self.clear_shell()
-                                print(
-                                    f"Détails du match: {selected_match['name']} \n\n"
-                                    f"Joueur 1: {selected_match['player1']['name']} "
-                                    + f"{selected_match['player1']['first_name']} \n"
-                                    f"Joueur 2: {selected_match['player2']['name']} "
-                                    + f"{selected_match['player2']['first_name']} \n"
-                                    f"Gagnant: {selected_match['winner']} \n"
-                                )
-                                print("ici 3")
-                                user_input = self.get_user_input(
-                                    msg_display="\nr - Retour\n",
-                                    msg_error="Veuillez entrer une option valide",
-                                    value_type="selection",
-                                    assertions=["r"],
-                                )
+                            self.clear_shell()
+                            print(
+                                f"Détails du match: {selected_match['name']} \n\n"
+                                f"Joueur 1: {selected_match['player1']['name']} "
+                                + f"{selected_match['player1']['first_name']} \n"
+                                f"Joueur 2: {selected_match['player2']['name']} "
+                                + f"{selected_match['player2']['first_name']} \n"
+                                f"Gagnant: {selected_match['winner']} \n"
+                            )
+                            print("ici 3")
+                            user_input = self.get_user_input(
+                                msg_display="\nr - Retour\n",
+                                msg_error="Veuillez entrer une option valide",
+                                value_type="selection",
+                                assertions=["r"],
+                            )
 
-                                if user_input == "r":
+                            if user_input == "r":
                                     break
 
     @staticmethod
