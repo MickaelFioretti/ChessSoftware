@@ -15,7 +15,7 @@ class CreatePlayer(BaseView):
             msg_error="Veuillez entrer une date valide",
             value_type="date",
         )
-        
+
         ranking = self.get_user_input(
             msg_display="Entrez le classement du joueur (0 a 1000): ",
             msg_error="Veuillez entrer un classement valide",

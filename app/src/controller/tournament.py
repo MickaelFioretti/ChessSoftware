@@ -115,7 +115,7 @@ def play_tournament(tournament, new_tournament_loaded=False):
                 # Round suivant
                 if user_input == "1":
                     current_round.play_round()
-                    
+
                     break
 
                 # Voir le classement

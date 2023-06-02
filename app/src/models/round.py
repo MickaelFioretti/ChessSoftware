@@ -41,11 +41,11 @@ class Round:
         print("Resultats des matchs:")
         for match in self.matchs:
             match.play_match()
-            print(f"P1: {match.player1.name} : {match.score_player1} \n"
-                    f"P2: {match.player2.name} : {match.score_player2}  \n"
-                    f"Winner: {match.winner} \n"
-                )
-        
+            print(
+                f"P1: {match.player1.name} : {match.score_player1} \n"
+                f"P2: {match.player2.name} : {match.score_player2}  \n"
+                f"Winner: {match.winner} \n"
+            )
 
     def get_serialized(self):
         """Method returning serialized round"""

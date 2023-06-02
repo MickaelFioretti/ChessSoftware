@@ -40,7 +40,7 @@ class Tournament:
         # --- Other rounds ---
         else:
             players = sorted(self.players, key=lambda x: x.ranking, reverse=False)
-        
+
         # --- Create pairs ---
         # Split players list in two
         half_len = len(players) // 2
@@ -56,12 +56,20 @@ class Tournament:
             if inf_part[i].first_name + inf_part[i].name in sup_part[i].played_with:
                 if inf_part[i].ranking == sup_part[i].ranking:
                     players_pairs.append([sup_part[i], inf_part[i + 1]])
-                    sup_part[i].played_with.append(f"{inf_part[i + 1].first_name} {inf_part[i + 1].name}")
-                    inf_part[i + 1].played_with.append(f"{sup_part[i].first_name} {sup_part[i].name}")
+                    sup_part[i].played_with.append(
+                        f"{inf_part[i + 1].first_name} {inf_part[i + 1].name}"
+                    )
+                    inf_part[i + 1].played_with.append(
+                        f"{sup_part[i].first_name} {sup_part[i].name}"
+                    )
             else:
                 players_pairs.append([sup_part[i], inf_part[i]])
-                sup_part[i].played_with.append(f"{inf_part[i].first_name} {inf_part[i].name}")
-                inf_part[i].played_with.append(f"{sup_part[i].first_name} {sup_part[i].name}")
+                sup_part[i].played_with.append(
+                    f"{inf_part[i].first_name} {inf_part[i].name}"
+                )
+                inf_part[i].played_with.append(
+                    f"{sup_part[i].first_name} {sup_part[i].name}"
+                )
 
         return players_pairs
 

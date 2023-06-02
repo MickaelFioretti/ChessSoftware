@@ -41,6 +41,7 @@ def update_data(data_type: str, identifier: str, new_data: dict):
     with open(f"{path_json}db.json", "w") as json_file:
         json.dump(data_db, json_file, default=lambda o: o.get_serialized(), indent=4)
 
+
 # --------- load data ---------
 def load_data():
     with open(f"{path_json}db.json", "r") as json_file:

@@ -7,7 +7,6 @@ from operator import itemgetter
 
 # --- Report ---
 class Report(BaseView):
-    
     def __init__(self):
         self.player_list = load_data()
         self.tournament_list = load_data()["tournaments"]
@@ -65,7 +64,7 @@ class Report(BaseView):
             print("Aucun tournoi trouvé")
             input("\nAppuyez sur entrée pour continuer\n")
             return
-        
+
         builded_selection = self.build_selection(
             iterable=self.tournament_list,
             display_msg="Voir les details d'un tournoi: \n",
@@ -101,11 +100,10 @@ class Report(BaseView):
                     )
 
                     user_input = self.get_user_input(
-                        msg_display=
-                            "Que voulez-vous faire ?\n"
-                            "1 - Voir les joueurs\n"
-                            "2 - Voir les rounds\n"
-                            "\nr - Retour\n",
+                        msg_display="Que voulez-vous faire ?\n"
+                        "1 - Voir les joueurs\n"
+                        "2 - Voir les rounds\n"
+                        "\nr - Retour\n",
                         msg_error="Veuillez entrer une option valide",
                         value_type="selection",
                         assertions=["1", "2", "r"],
@@ -146,9 +144,9 @@ class Report(BaseView):
     def display_round(self, rounds: list):
         while True:
             builded_selection = self.build_selection(
-            iterable=rounds,
-            display_msg="Voir les details d'un round: \n",
-            assertions=["r"],
+                iterable=rounds,
+                display_msg="Voir les details d'un round: \n",
+                assertions=["r"],
             )
             self.clear_shell()
             # --- on affiche la liste des tournois ---
@@ -212,10 +210,10 @@ class Report(BaseView):
                             )
 
                             if user_input == "r":
-                                    break
+                                break
 
     @staticmethod
-    def sort_player(players: list, by_rank: bool) -> list:
+    def sort_player(players: dict, by_rank: bool) -> list:
         if by_rank:
             sorted_players = sorted(players["players"], key=itemgetter("ranking"))
         else:

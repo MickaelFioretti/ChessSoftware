@@ -63,7 +63,7 @@ docker exec -it 'container_id' bash
 5.  Run the application:
 
 ```bash
-python app/src/main.py
+python3 app/src/main.py
 ```
 
 ## Usage
@@ -73,7 +73,7 @@ Once the application is running, you can use the main menu to create tournaments
 To launch the main program, execute the command in the terminal.
 
 ```bash
-python app/src/main.py
+python3 app/src/main.py
 ```
 
 ### Test
