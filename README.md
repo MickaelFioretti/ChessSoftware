@@ -4,7 +4,7 @@ This is a chess software that allows users to manage tournaments and players.
 
 ## Installation
 
-### Using venv
+### Using pipenv
 
 1.  Clone the repository:
 
@@ -15,11 +15,11 @@ git clone https://github.com/MickaelFioretti/ChessSoftware.git
 2.  Create a virtual environment and activate it:
 
 ```bash
-python -m venv venv
+pipenv --python 3.11
 ```
 
 ```bash
-source venv/bin/activate
+pipenv shell
 ```
 
 3.  Install the dependencies:
