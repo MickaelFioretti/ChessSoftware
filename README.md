@@ -89,3 +89,12 @@ And run this command
 ```bash
 pytest-3
 ```
+
+
+## Flake8
+
+For generate a report flake8 you can run this command
+
+```bash
+flake8 --format=html --htmldir=flake-report
+```
