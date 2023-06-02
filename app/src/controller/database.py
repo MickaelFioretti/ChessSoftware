@@ -1,6 +1,5 @@
 # --- imports ---
 import json
-from time import sleep
 
 # --- models ---
 from models.player import Player
