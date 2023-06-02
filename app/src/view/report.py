@@ -188,29 +188,30 @@ class Report(BaseView):
                         break
 
                     else:
-                        while True:
-                            selected_match = selected_round["matchs"][
-                                int(user_input) - 1
-                            ]
-                            self.clear_shell()
-                            print(
-                                f"Détails du match: {selected_match['name']} \n\n"
-                                f"Joueur 1: {selected_match['player1']['name']} "
-                                + f"{selected_match['player1']['first_name']} \n"
-                                f"Joueur 2: {selected_match['player2']['name']} "
-                                + f"{selected_match['player2']['first_name']} \n"
-                                f"Gagnant: {selected_match['winner']} \n"
-                            )
-                            print("ici 3")
-                            user_input = self.get_user_input(
-                                msg_display="\nr - Retour\n",
-                                msg_error="Veuillez entrer une option valide",
-                                value_type="selection",
-                                assertions=["r"],
-                            )
+                        selected_match = selected_round["matchs"][int(user_input) - 1]
+                        self.display_match(selected_match=selected_match)
 
-                            if user_input == "r":
-                                break
+    def display_match(self, selected_match: dict):
+        while True:
+            self.clear_shell()
+            print(
+                f"Détails du match: {selected_match['name']} \n\n"
+                f"Joueur 1: {selected_match['player1']['name']} "
+                + f"{selected_match['player1']['first_name']} \n"
+                f"Joueur 2: {selected_match['player2']['name']} "
+                + f"{selected_match['player2']['first_name']} \n"
+                f"Gagnant: {selected_match['winner']} \n"
+            )
+
+            user_input = self.get_user_input(
+                msg_display="\nr - Retour\n",
+                msg_error="Veuillez entrer une option valide",
+                value_type="selection",
+                assertions=["r"],
+            )
+
+            if user_input == "r":
+                break
 
     @staticmethod
     def sort_player(players: dict, by_rank: bool) -> list:
